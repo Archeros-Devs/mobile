@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Peruibe Melhor</string>
+    <string name="sobre_nome">Sobre nome</string>
+    <string name="senha">senha</string>
+    <string name="login">login</string>
+    <string name="aviso_login_sobrenome">Favor utilizar o seu sobre nome para login</string>
+</resources>
