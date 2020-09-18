@@ -8,6 +8,6 @@ open class BaseActivity : AppCompatActivity(), InterfaceUsuarioLogado {
 
     override fun onResume() {
         super.onResume()
-        getUsuarioLogado();
+        getUsuarioLogado()
     }
 }

@@ -9,7 +9,7 @@ import br.com.arquerosdev.dao.UsuarioDao
 import br.com.arquerosdev.model.ModelEndereco
 import br.com.arquerosdev.model.ModelUsuario
 
-@Database(entities = [ModelUsuario::class, ModelEndereco::class], version = 3)
+@Database(entities = [ModelUsuario::class, ModelEndereco::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun UsuarioDao(): UsuarioDao
     abstract fun EnderecoDao(): EnderecoDao
@@ -28,7 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "peruibe_database"
+                    "peruibe_database.sqlite"
                 ).build()
                 INSTANCE = instance
                 return instance

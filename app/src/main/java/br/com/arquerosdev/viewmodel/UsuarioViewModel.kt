@@ -13,17 +13,13 @@ import kotlinx.coroutines.launch
 class UsuarioViewModel (application: Application) : AndroidViewModel(application) {
 
     private val repository: UsuarioRepository
-    val modelUsuarioLogado: ModelUsuario
+    val modelUsuarioLogado: LiveData<ModelUsuario>
 
     init {
         val usuarioDao = AppDatabase.getDatabase(application).UsuarioDao()
         repository = UsuarioRepository(usuarioDao)
-        modelUsuarioLogado = repository.modelAsUsuarioLogado
+        modelUsuarioLogado = repository.getAsUsuarioLogado()
     }
-
-/*    fun getUsuarioLogado(usuario: String, senha: String): LiveData<Usuario> {
-        return getUsuarioLogado(usuario, senha)
-    }*/
 
     fun insert(modelUsuario: ModelUsuario) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelUsuario)

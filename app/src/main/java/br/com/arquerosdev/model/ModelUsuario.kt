@@ -1,17 +1,19 @@
 package br.com.arquerosdev.model
 
+import android.view.ViewDebug
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.sql.Timestamp
 
 @Entity(tableName = "Usuario")
 data class ModelUsuario (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_usuario")
-    val id_usuario : Int,
+    val idUsuario : Int,
 
     @ColumnInfo(name = "id_profissao")
-    val id_profissao: Int?,
+    val idProfissao: Int?,
 
     @ColumnInfo(name = "cpf")
     val cpf: String?,
@@ -29,7 +31,7 @@ data class ModelUsuario (
     val email: String?,
 
     @ColumnInfo(name = "url_img")
-    val url_Img: String?,
+    val urlImg: String?,
 
     @ColumnInfo(name = "id_escolaridade")
     val idEscolaridade: Int?,
@@ -38,13 +40,13 @@ data class ModelUsuario (
     val ativo: Boolean?,
 
     @ColumnInfo(name = "tipo_usuario")
-    val tipo_usuario: Int?,
+    val tipoUsuario: Int?,
 
-    @ColumnInfo(name = "criado_em")
-    val criadoEm: String?,
+/*    @ColumnInfo(name = "criado_em")
+    val criadoEm: Timestamp?,
 
     @ColumnInfo(name = "deletado_em")
-    val deletadoEm: String?,
+    val deletadoEm: Timestamp?,*/
 
     @ColumnInfo(name = "telefone")
     val telefone: String?

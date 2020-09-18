@@ -17,6 +17,14 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
+        usuarioViewModel.modelUsuarioLogado.observe(this, Observer { usuario ->
+            if(usuario != null){
+                sessaoUsuario = usuario.ativo!!
+            }
+
+            Log.i(TAG,"UsuarioLoagado = ${sessaoUsuario}")
+        })
         if(sessaoUsuario){
             Log.i(TAG,"chama home")
         }else{
@@ -27,9 +35,7 @@ class MainActivity : BaseActivity() {
 
     override fun getUsuarioLogado() {
         super.getUsuarioLogado()
-        usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
-        sessaoUsuario = usuarioViewModel.modelUsuarioLogado.ativo == true
-        Log.i(TAG,"UsuarioLoagado = ${sessaoUsuario}")
+
     }
 
 }

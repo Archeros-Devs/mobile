@@ -9,12 +9,8 @@ import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface UsuarioDao {
-    @Query("SELECT * FROM Usuario WHERE ativo = '1'")
-    fun getAsUsuarioLogado(): ModelUsuario
-
-   /* @Query("SELECT * FROM Usuario WHERE ativo = 'LOGADO'")//sobre_nome = :sobre_nome AND senha = :senha
-    fun getUsuarioLogado(): ModelUsuario
-    sobre_nome: String, senha: String*/
+    @Query("SELECT * FROM Usuario WHERE ativo = '1' limit 1")
+    fun getAsUsuarioLogado(): LiveData<ModelUsuario>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(modelUsuario: ModelUsuario)
