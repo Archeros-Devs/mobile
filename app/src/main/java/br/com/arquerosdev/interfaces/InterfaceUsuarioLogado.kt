@@ -1,4 +1,4 @@
-package br.com.arquerosdev.inferfaces
+package br.com.arquerosdev.interfaces
 
 interface InterfaceUsuarioLogado {
     fun getUsuarioLogado()

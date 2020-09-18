@@ -4,12 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import br.com.arquerosdev.dao.EnderecoDao
 import br.com.arquerosdev.dao.UsuarioDao
+import br.com.arquerosdev.model.ModelEndereco
 import br.com.arquerosdev.model.ModelUsuario
 
-@Database(entities = arrayOf(ModelUsuario::class), version = 1)
+@Database(entities = [ModelUsuario::class, ModelEndereco::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun UsuarioDao(): UsuarioDao
+    abstract fun EnderecoDao(): EnderecoDao
+
 
     companion object {
         @Volatile

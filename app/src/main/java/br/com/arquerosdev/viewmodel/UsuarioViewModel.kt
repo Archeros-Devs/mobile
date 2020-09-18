@@ -13,12 +13,12 @@ import kotlinx.coroutines.launch
 class UsuarioViewModel (application: Application) : AndroidViewModel(application) {
 
     private val repository: UsuarioRepository
-    val modelUsuarioLogado: LiveData<ModelUsuario>
+    val modelUsuarioLogado: ModelUsuario
 
     init {
         val usuarioDao = AppDatabase.getDatabase(application).UsuarioDao()
         repository = UsuarioRepository(usuarioDao)
-        modelUsuarioLogado = repository.modelUsuarioLogado
+        modelUsuarioLogado = repository.modelAsUsuarioLogado
     }
 
 /*    fun getUsuarioLogado(usuario: String, senha: String): LiveData<Usuario> {

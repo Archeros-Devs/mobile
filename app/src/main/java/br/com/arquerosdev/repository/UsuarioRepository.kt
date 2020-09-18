@@ -6,7 +6,7 @@ import br.com.arquerosdev.model.ModelUsuario
 
 class UsuarioRepository(private val usuarioDao: UsuarioDao) {
 
-    val modelUsuarioLogado: LiveData<ModelUsuario> = usuarioDao.getUsuarioLogado()
+    val modelAsUsuarioLogado: ModelUsuario = usuarioDao.getAsUsuarioLogado()
     /*fun getUsuarioLogado(){//usuario
         usuarioDao.getUsuarioLogado()//sobre_nome, senha
     }*/

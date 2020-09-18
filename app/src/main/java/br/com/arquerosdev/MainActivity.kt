@@ -1,5 +1,6 @@
 package br.com.arquerosdev
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
@@ -16,16 +17,19 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if(sessaoUsuario){
+            Log.i(TAG,"chama home")
+        }else{
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
     }
 
     override fun getUsuarioLogado() {
         super.getUsuarioLogado()
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
-        usuarioViewModel.modelUsuarioLogado
-            .observe(this, Observer { usuarioLogado ->
-                sessaoUsuario = usuarioLogado?.status.equals("LOGADO")
-            })
-        Log.i(TAG,"UsuarioLoagado = ${sessaoUsuario}");
+        sessaoUsuario = usuarioViewModel.modelUsuarioLogado.ativo == true
+        Log.i(TAG,"UsuarioLoagado = ${sessaoUsuario}")
     }
 
 }

@@ -9,12 +9,18 @@ import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface UsuarioDao {
-    @Query("SELECT * FROM Usuario WHERE status = 'LOGADO'")//sobre_nome = :sobre_nome AND senha = :senha
-    fun getUsuarioLogado(): LiveData<ModelUsuario>//sobre_nome: String, senha: String
+    @Query("SELECT * FROM Usuario WHERE ativo = '1'")
+    fun getAsUsuarioLogado(): ModelUsuario
+
+   /* @Query("SELECT * FROM Usuario WHERE ativo = 'LOGADO'")//sobre_nome = :sobre_nome AND senha = :senha
+    fun getUsuarioLogado(): ModelUsuario
+    sobre_nome: String, senha: String*/
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(modelUsuario: ModelUsuario)
 
-    @Query("UPDATE Usuario SET status = 'DISABLE' WHERE cnpj = :cnpj")
-    suspend fun deleteUsuario(cnpj: String)
+    @Query("UPDATE Usuario SET ativo = 'DISABLE' WHERE cpf = :cpf")
+    suspend fun deleteUsuario(cpf: String)
+
+
 }
