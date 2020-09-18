@@ -27,4 +27,14 @@
     <string name="cep">CEP</string>
     <string name="confirmar_senha">Confirmar Senha</string>
     <string name="salvar">Salvar</string>
+    <string name="nome_pasta">Nome</string>
+    <string name="discusao">Discusao</string>
+    <string name="descricao">Descrição</string>
+    <string name="nova_pasta">Nova Pasta</string>
+
+    <string-array name="categorias_array">
+        <item>Selecione uma categoria</item>
+        <item>Saúde</item>
+        <item>Infraestrutura</item>
+    </string-array>
 </resources>
