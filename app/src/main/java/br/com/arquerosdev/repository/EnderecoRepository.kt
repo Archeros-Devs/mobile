@@ -8,10 +8,9 @@ import br.com.arquerosdev.model.ModelUsuario
 
 class EnderecoRepository(private val enderecoDao: EnderecoDao) {
 
-   // val modelUsuarioLogado: LiveData<ModelEndereco> = enderecoDao.getEndereco()
-    /*fun getUsuarioLogado(){//usuario
-        usuarioDao.getUsuarioLogado()//sobre_nome, senha
-    }*/
+    fun getEndereco():LiveData<ModelEndereco>{
+        return enderecoDao.getEndereco()
+    }
 
     suspend fun insert(modelEndereco: ModelEndereco) {
         enderecoDao.insert(modelEndereco)

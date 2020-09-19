@@ -6,7 +6,6 @@ import br.com.arquerosdev.views.FragmentsLogin
 
 class LoginActivity : BaseActivity() {
 
-    private lateinit var usuarioViewModel: UsuarioViewModel
     private var TAG: String = "LoginActivity"
 
     override fun onCreate(icicle: Bundle?) {

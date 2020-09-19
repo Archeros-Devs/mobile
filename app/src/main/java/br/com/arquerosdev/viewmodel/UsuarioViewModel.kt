@@ -21,6 +21,10 @@ class UsuarioViewModel (application: Application) : AndroidViewModel(application
         modelUsuarioLogado = repository.getAsUsuarioLogado()
     }
 
+    fun getCheckCredenciais(email: String, senha: String): ModelUsuario{
+        return repository.getCheckCredenciais(email, senha)
+    }
+
     fun insert(modelUsuario: ModelUsuario) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelUsuario)
     }

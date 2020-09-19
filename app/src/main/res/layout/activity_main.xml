@@ -10,94 +10,10 @@
         android:id="@+id/frag_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/etpasta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_margin="20dp"
-                android:text="@string/nova_pasta" />
-
-            <EditText
-                android:id="@+id/etNome_pasta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="@string/nome_pasta"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/etDiscusao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="@string/discusao"
-                android:inputType="textPersonName" />
-
-            <Spinner
-                android:id="@+id/spCategorias"
-                android:layout_width="match_parent"
-                android:layout_height="37dp"
-                android:entries="@array/categorias_array"
-                android:spinnerMode="dropdown" />
-
-            <EditText
-                android:id="@+id/etDescricao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="@string/descricao"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/etEndereco"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:inputType="textPostalAddress"
-                android:hint="@string/endereco" />
-
-            <RadioGroup
-                android:id="@+id/etConclusao"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/etSalvar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="50dp"
-                    android:hint="Salvar" />
-
-                <Button
-                    android:id="@+id/etCancelar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:hint="Cancelar" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-    </androidx.fragment.app.FragmentContainerView>
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

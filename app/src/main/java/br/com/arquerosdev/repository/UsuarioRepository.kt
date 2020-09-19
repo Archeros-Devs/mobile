@@ -10,6 +10,10 @@ class UsuarioRepository(private val usuarioDao: UsuarioDao) {
         return usuarioDao.getAsUsuarioLogado()
     }
 
+    fun getCheckCredenciais(email: String, senha: String): ModelUsuario{
+        return usuarioDao.getCheckCredenciais(email, senha)
+    }
+
     suspend fun insert(modelUsuario: ModelUsuario) {
         usuarioDao.insert(modelUsuario)
     }
