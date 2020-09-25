@@ -39,7 +39,8 @@ class FragmentsLogin : Fragment() {
             val logadoComSucesso = usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
                 .observe(activity!!, Observer{ usuario ->
                     if(usuario.ativo!!){
-
+                        //TODO: camada para o dashboard
+                        Toast.makeText(context, "Falta alguem fazer o Dashboard", Toast.LENGTH_LONG).show()
                     }else{
                         Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
                     }
