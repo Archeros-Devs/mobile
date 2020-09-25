@@ -13,7 +13,7 @@ interface UsuarioDao {
     fun getAsUsuarioLogado(): LiveData<ModelUsuario>
 
     @Query("SELECT * FROM Usuario WHERE email = :email AND senha = :senha")
-    fun getCheckCredenciais(email: String, senha: String): ModelUsuario
+    fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(modelUsuario: ModelUsuario)

@@ -31,6 +31,8 @@
     <string name="discusao">Discusao</string>
     <string name="descricao">Descrição</string>
     <string name="nova_pasta">Nova Pasta</string>
+    <string name="login_invalido">Login Inválido</string>
+    <string name="campos_vazios">campos vazios!</string>
 
     <string-array name="categorias_array">
         <item>Selecione uma categoria</item>

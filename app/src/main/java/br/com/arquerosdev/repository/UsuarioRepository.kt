@@ -10,7 +10,7 @@ class UsuarioRepository(private val usuarioDao: UsuarioDao) {
         return usuarioDao.getAsUsuarioLogado()
     }
 
-    fun getCheckCredenciais(email: String, senha: String): ModelUsuario{
+    fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>{
         return usuarioDao.getCheckCredenciais(email, senha)
     }
 

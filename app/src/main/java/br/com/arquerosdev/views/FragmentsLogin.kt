@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.R
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
@@ -35,10 +36,17 @@ class FragmentsLogin : Fragment() {
             .get(UsuarioViewModel::class.java)
 
         if(!view.edEmail.text.toString().isNullOrBlank() || !view.edSenha.text.toString().isNullOrBlank()){
-            usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
+            val logadoComSucesso = usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
+                .observe(activity!!, Observer{ usuario ->
+                    if(usuario.ativo!!){
+
+                    }else{
+                        Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
+                    }
+                })
+
         }else{
-            Toast.makeText(context, "campos vazios!", Toast.LENGTH_LONG).show()
-            Log.e("teste", "*********")
+            Toast.makeText(context, getString(R.string.campos_vazios), Toast.LENGTH_LONG).show()
         }
     }
 }

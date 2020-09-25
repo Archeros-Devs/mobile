@@ -21,7 +21,7 @@ class UsuarioViewModel (application: Application) : AndroidViewModel(application
         modelUsuarioLogado = repository.getAsUsuarioLogado()
     }
 
-    fun getCheckCredenciais(email: String, senha: String): ModelUsuario{
+    fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>{
         return repository.getCheckCredenciais(email, senha)
     }
 

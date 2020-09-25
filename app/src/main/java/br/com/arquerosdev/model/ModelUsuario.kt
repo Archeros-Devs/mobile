@@ -1,10 +1,8 @@
 package br.com.arquerosdev.model
 
-import android.view.ViewDebug
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.sql.Timestamp
 
 @Entity(tableName = "Usuario")
 data class ModelUsuario (
