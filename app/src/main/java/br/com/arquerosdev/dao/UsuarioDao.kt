@@ -15,7 +15,7 @@ interface UsuarioDao {
     @Query("SELECT * FROM Usuario WHERE email = :email AND senha = :senha")
     fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(modelUsuario: ModelUsuario)
 
     @Query("UPDATE Usuario SET ativo = 'DISABLE' WHERE cpf = :cpf")

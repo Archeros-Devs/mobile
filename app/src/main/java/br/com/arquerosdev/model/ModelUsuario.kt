@@ -16,6 +16,7 @@ data class ModelUsuario (
     @ColumnInfo(name = "cpf")
     val cpf: String?,
 
+    @PrimaryKey
     @ColumnInfo(name = "nome")
     val nome: String?,
 
@@ -25,6 +26,7 @@ data class ModelUsuario (
     @ColumnInfo(name = "genero")
     val genero: String?,
 
+    @PrimaryKey
     @ColumnInfo(name = "email")
     val email: String?,
 
