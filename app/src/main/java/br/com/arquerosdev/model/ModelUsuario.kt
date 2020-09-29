@@ -3,6 +3,7 @@ package br.com.arquerosdev.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "Usuario")
 data class ModelUsuario (
@@ -13,20 +14,22 @@ data class ModelUsuario (
     @ColumnInfo(name = "id_profissao")
     val idProfissao: Int?,
 
+    @NotNull
     @ColumnInfo(name = "cpf")
     val cpf: String?,
 
-    @PrimaryKey
+    @NotNull
     @ColumnInfo(name = "nome")
     val nome: String?,
 
+    @NotNull
     @ColumnInfo(name = "senha")
     val senha: String?,
 
     @ColumnInfo(name = "genero")
     val genero: String?,
 
-    @PrimaryKey
+    @NotNull
     @ColumnInfo(name = "email")
     val email: String?,
 
