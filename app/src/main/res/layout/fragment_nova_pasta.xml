@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="40dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/etpasta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/nova_pasta" />
+
+        <EditText
+            android:id="@+id/etNome_pasta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="@string/nome_pasta"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etDiscusao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="@string/discusao"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/spCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:entries="@array/categorias_array"
+            android:spinnerMode="dropdown" />
+
+        <EditText
+            android:id="@+id/etDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="@string/descricao"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:hint="@string/endereco" />
+
+        <RadioGroup
+            android:id="@+id/etConclusao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/etSalvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:hint="Salvar" />
+
+            <Button
+                android:id="@+id/etCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:hint="Cancelar" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</LinearLayout>
