@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import br.com.arquerosdev.dao.EnderecoDao
-import br.com.arquerosdev.dao.ProfissaoDao
-import br.com.arquerosdev.dao.UsuarioDao
+import br.com.arquerosdev.dao.*
 import br.com.arquerosdev.model.ModelEndereco
 import br.com.arquerosdev.model.ModelProfissao
 import br.com.arquerosdev.model.ModelUsuario
@@ -16,6 +14,15 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun UsuarioDao(): UsuarioDao
     abstract fun EnderecoDao(): EnderecoDao
     abstract fun ProfissaoDao(): ProfissaoDao
+    abstract fun PastaDao(): PastaDao
+    abstract fun PastaCategoriaDao(): PastaCategoriaDao
+    abstract fun ArquivoDao(): ArquivoDao
+    abstract fun EscolaridadeDao(): EscolaridadeDao
+    abstract fun EstudoDao(): EstudoDao
+    abstract fun InteresseDao(): InteresseDao
+    abstract fun CategoriaDao(): CategoriaDao
+    abstract fun UsuarioAvaliaPastaDao(): UsuarioAvaliaPastaDao
+    abstract fun UsuarioSeguePastaDao(): UsuarioSeguePastaDao
 
     companion object {
         @Volatile
