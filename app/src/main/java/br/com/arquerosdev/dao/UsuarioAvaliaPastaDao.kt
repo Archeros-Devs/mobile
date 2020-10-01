@@ -12,7 +12,7 @@ import br.com.arquerosdev.model.ModelUsuarioAvaliaPasta
 
 @Dao
 interface UsuarioAvaliaPastaDao {
-    @Query("SELECT * FROM Usuario_Avalia_Pasta")
+    @Query("SELECT * FROM UsuarioAvaliaPasta")
     fun pegarUsuarioAvaliaPasta(): LiveData<List<ModelUsuarioAvaliaPasta>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)

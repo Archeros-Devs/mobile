@@ -11,7 +11,7 @@ import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface PastaCategoriaDao {
-    @Query("SELECT * FROM Pasta_Categoria")
+    @Query("SELECT * FROM PastaCategoria")
     fun pegarPastaCategoria(): LiveData<List<ModelPastaCategoria>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
