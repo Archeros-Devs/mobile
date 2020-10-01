@@ -21,8 +21,6 @@ class ProfisaoViewModel (application: Application) : AndroidViewModel(applicatio
         modelProfissao = repository.pegarProfissoes()
     }
 
-
-
     fun insert(modelProfissao: List<ModelProfissao>) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelProfissao)
     }
