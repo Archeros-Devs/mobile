@@ -5,11 +5,23 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.arquerosdev.dao.*
-import br.com.arquerosdev.model.ModelEndereco
-import br.com.arquerosdev.model.ModelProfissao
-import br.com.arquerosdev.model.ModelUsuario
+import br.com.arquerosdev.model.*
 
-@Database(entities = [ModelUsuario::class, ModelEndereco::class, ModelProfissao::class], version = 1)
+@Database(entities = [
+    ModelUsuario::class,
+    ModelEndereco::class,
+    ModelProfissao::class,
+    ModelArquivo::class,
+    ModelCategoria::class,
+    ModelEscolaridade::class,
+    ModelEstudo::class,
+    ModelInteresse::class,
+    ModelPasta::class,
+    ModelPastaCategoria::class,
+    ModelUsuarioAvaliaPasta::class,
+    ModelUsuarioSeguePasta::class
+
+], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun UsuarioDao(): UsuarioDao
     abstract fun EnderecoDao(): EnderecoDao
