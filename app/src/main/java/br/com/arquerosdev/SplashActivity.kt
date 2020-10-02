@@ -26,9 +26,9 @@ class SplashActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
         //val profissoes: List<ModelProfissao> = it
         val profissaoViewModel: ProfisaoViewModel = ViewModelProvider(this)
             .get(ProfisaoViewModel::class.java)
-        profissaoViewModel.insert(profissoes)
+        //profissaoViewModel.insert(profissoes)
 
-        ProfissoesWebClient().list()
+       // ProfissoesWebClient().list()
 
         if(sessaoUsuario){
             Log.i(TAG,"chama home")
