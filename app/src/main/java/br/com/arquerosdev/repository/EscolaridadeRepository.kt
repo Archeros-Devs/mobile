@@ -12,6 +12,10 @@ class EscolaridadeRepository (private val escolaridadeDao: EscolaridadeDao) {
         return escolaridadeDao.pegarEscolaridade()
     }
 
+    fun pegarNomeEscolaridade(): LiveData<List<String>>{
+        return escolaridadeDao.pegarNomeEscolaridade()
+    }
+
     suspend fun insert(modelEscolaridade: List<ModelEscolaridade>) {
         escolaridadeDao.insert(modelEscolaridade)
     }

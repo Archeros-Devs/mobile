@@ -12,8 +12,11 @@ import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface EscolaridadeDao {
-    @Query("SELECT * FROM Escolaridade")
+    @Query("SELECT DISTINCT * FROM Escolaridade")
     fun pegarEscolaridade(): LiveData<List<ModelEscolaridade>>
+
+    @Query("SELECT DISTINCT escolaridade FROM Escolaridade")
+    fun pegarNomeEscolaridade(): LiveData<List<String>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(pasta: List<ModelEscolaridade>)

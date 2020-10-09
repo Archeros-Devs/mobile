@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/root_layout"
         android:orientation="vertical">
         <TextView
             android:id="@+id/textView"
@@ -106,15 +107,15 @@
             android:inputType="phone"
             android:hint="@string/telefone" />
 
-        <MultiAutoCompleteTextView
-            android:id="@+id/etProfissao"
+        <AutoCompleteTextView
+            android:id="@+id/actvProfissao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:hint="@string/profissao" />
+            android:hint="@string/profissao"/>
 
-        <MultiAutoCompleteTextView
-            android:id="@+id/etEscolaridade"
+        <AutoCompleteTextView
+            android:id="@+id/actvEscolaridade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"

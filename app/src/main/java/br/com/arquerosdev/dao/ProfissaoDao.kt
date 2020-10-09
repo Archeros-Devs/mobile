@@ -10,8 +10,11 @@ import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface ProfissaoDao {
-    @Query("SELECT * FROM Profissoes")
+    @Query("SELECT DISTINCT * FROM Profissoes")
     fun pegarProfissoes(): LiveData<List<ModelProfissao>>
+
+    @Query("SELECT DISTINCT nome FROM Profissoes")
+    fun pegarNomeProfissoes(): LiveData<List<String>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(profisao: List<ModelProfissao>)

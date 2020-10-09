@@ -17,11 +17,13 @@ class EscolaridadeViewModel (application: Application) : AndroidViewModel(applic
 
     private val repository: EscolaridadeRepository
     val modelEscolaridade: LiveData<List<ModelEscolaridade>>
+    val listNomeEscolaridade: LiveData<List<String>>
 
     init {
         val escolaridadeDao = AppDatabase.getDatabase(application).EscolaridadeDao()
         repository = EscolaridadeRepository (escolaridadeDao)
         modelEscolaridade = repository.pegarEscolaridade()
+        listNomeEscolaridade = repository.pegarNomeEscolaridade()
     }
 
     fun insert(modelEscolaridade: List<ModelEscolaridade>) = viewModelScope.launch(Dispatchers.IO) {

@@ -10,6 +10,10 @@ class ProfissaoRepository(private val profissaoDao: ProfissaoDao) {
         return profissaoDao.pegarProfissoes()
     }
 
+    fun pegarNomeProfissoes(): LiveData<List<String>>{
+        return profissaoDao.pegarNomeProfissoes()
+    }
+
     suspend fun insert(modelProfissao: List<ModelProfissao>) {
         profissaoDao.insert(modelProfissao)
     }

@@ -14,11 +14,13 @@ class ProfisaoViewModel (application: Application) : AndroidViewModel(applicatio
 
     private val repository: ProfissaoRepository
     val modelProfissao: LiveData<List<ModelProfissao>>
+    val listNomeProfissao: LiveData<List<String>>
 
     init {
         val profissaoDao = AppDatabase.getDatabase(application).ProfissaoDao()
         repository = ProfissaoRepository(profissaoDao)
         modelProfissao = repository.pegarProfissoes()
+        listNomeProfissao = repository.pegarNomeProfissoes()
     }
 
     fun insert(modelProfissao: List<ModelProfissao>) = viewModelScope.launch(Dispatchers.IO) {
