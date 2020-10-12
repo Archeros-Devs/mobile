@@ -24,7 +24,8 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
-            android:hint="@string/nome_completo" />
+            android:hint="@string/nome_completo"
+            android:text="DEU CERTO"/>
 
         <EditText
             android:id="@+id/etCpf"
@@ -33,7 +34,8 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
-            android:hint="@string/cpf" />
+            android:hint="@string/cpf"
+            android:text="33882811811"/>
 
         <EditText
             android:id="@+id/etEmail"
@@ -42,7 +44,8 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textEmailAddress"
-            android:hint="@string/email" />
+            android:hint="@string/email"
+            android:text="fernando.franco@impacta.com"/>
 
         <EditText
             android:id="@+id/etSenha"
@@ -50,8 +53,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginBottom="20dp"
-            android:inputType="textVisiblePassword"
-            android:hint="@string/senha" />
+            android:inputType="textPassword"
+            android:hint="@string/senha"
+            android:text="123456"/>
 
         <EditText
             android:id="@+id/etSenhaConf"
@@ -59,8 +63,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginBottom="20dp"
-            android:inputType="textVisiblePassword"
-            android:hint="@string/confirmar_senha" />
+            android:inputType="textPassword"
+            android:hint="@string/confirmar_senha"
+            android:text="123456"/>
 
         <RadioGroup
             android:id="@+id/etGenero"
@@ -81,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
+                android:checked="true"
                 android:text="@string/masculino" />
 
             <RadioButton
@@ -98,14 +104,16 @@
                 android:hint="@string/outros" />
         </RadioGroup>
 
+        <!--TODO: criar mascara para telefone -> (11) 9 97696051 -->
         <EditText
             android:id="@+id/etTelefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:ems="10"
+            android:ems="15"
             android:inputType="phone"
-            android:hint="@string/telefone" />
+            android:hint="@string/telefone"
+            android:text="1197696051"/>
 
         <AutoCompleteTextView
             android:id="@+id/actvProfissao"
@@ -139,6 +147,16 @@
             android:inputType="number"
             android:hint="@string/numero" />
 
+        <EditText
+            android:id="@+id/etComplemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/Complemento" />
+
+        <!-- TODO: Criar mascara para CEP 12345-123  -->
         <EditText
             android:id="@+id/etCep"
             android:layout_width="match_parent"
@@ -174,15 +192,6 @@
             android:ems="10"
             android:inputType="text"
             android:hint="@string/estado" />
-
-        <EditText
-            android:id="@+id/etComplemento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="@string/Complemento" />
 
         <Button
             android:id="@+id/btSalvar"

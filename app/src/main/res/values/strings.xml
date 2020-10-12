@@ -14,7 +14,7 @@
     <string name="outros">Outros</string>
     <string name="genero">Genero:</string>
     <string name="email">email</string>
-    <string name="telefone">Telefone</string>
+    <string name="telefone">Telefone; 11 9 9999 9999</string>
     <string name="profissao">Profissão</string>
     <string name="escolaridade">Escolaridade</string>
     <string name="pr_ximo">Próximo</string>
@@ -31,8 +31,20 @@
     <string name="discusao">Discusao</string>
     <string name="descricao">Descrição</string>
     <string name="nova_pasta">Nova Pasta</string>
-    <string name="login_invalido">Login Inválido</string>
+    <string name="login_invalido">Login Inválido!</string>
     <string name="campos_vazios">campos vazios!</string>
+
+    <!-- Melhorar os texto das mensagens de erros -> msg_error_* -->
+    <string name="msg_error_cpf">CPF inválido!</string>
+    <string name="msg_error_nome_completo">Favor colocar seu Nome Completo!</string>
+    <string name="msg_error_senha">Minino 6 Digitos!</string>
+    <string name="msg_error_senha_conf">A senha está diferente!</string>
+    <string name="msg_error_email">Email inválido!</string>
+    <string name="msg_error_gerero">Escolha um genero!</string>
+    <string name="msg_error_telefone">Número de telefone inválido!</string>
+    <string name="msg_error_escolaridade">Escolher um dos itens na lista!</string>
+    <string name="msg_error_profissao">Escolher um dos itens na lista!</string>
+    <string name="msg_error_endereco">Endereço inválido!</string>
 
     <string-array name="categorias_array">
         <item>Selecione uma categoria</item>
