@@ -35,12 +35,15 @@ class FragCadastroUsuario : Fragment() {
         configuracoesViewsProfissoes(view)
         configuracoesViewsEscolaridade(view)
 
+        //TODO: Salvar dados no bundle para recupear o cadastro não enviado
+        //TODO: Criar funcao para chegar de tem dados a recuperar no bundle
+
         funcoes = ChecarFuncoes(context!!)
 
         view.btSalvar.setOnClickListener {
             if(view != null ){
                 val isValido = checarCampos(view)
-                //if(isValido){salvarCadastro(view)}
+                if(isValido){salvarCadastro(view)}
             }
 
         }
@@ -152,7 +155,7 @@ class FragCadastroUsuario : Fragment() {
         }
 
         val strTelefone = view.etTelefone.text.toString()
-        if(strTelefone.isBlank() || strTelefone.length < 11){
+        if(strTelefone.isBlank() || strTelefone.length < 10){
             view.etTelefone.requestFocus()
             view.etTelefone.error = getText(R.string.msg_error_telefone)
             return false
@@ -201,6 +204,13 @@ class FragCadastroUsuario : Fragment() {
             return false
         }
 
+        val strEtEstado = view.etEstado.text.toString()
+        if(strEtEstado.isBlank() || strEtEstado.length < 2){
+            view.etEstado.requestFocus()
+            view.etEstado.error = getText(R.string.msg_error_endereco)
+            return false
+        }
+
         return true
     }
 
@@ -234,7 +244,7 @@ class FragCadastroUsuario : Fragment() {
             0,
             view.etCidade.text.toString(),
             view.etEstado.text.toString(),
-            0,//view.etCep.text.toString().toInt(),
+            view.etCep.text.toString().toInt(),
             view.etEndereco.text.toString(),
             view.etNumero.text.toString(),
             view.etBairro.text.toString(),
@@ -242,11 +252,11 @@ class FragCadastroUsuario : Fragment() {
         )
         val enderecoViewModel: EnderecoViewModel = ViewModelProvider(this)
             .get(EnderecoViewModel::class.java)
-        //enderecoViewModel.insert(endereco)
+        enderecoViewModel.insert(endereco)
 
-    /*    val frag = FragmentsLogin()
+        val frag = FragmentsLogin()
             this.activity!!.supportFragmentManager.beginTransaction()
-            .replace(R.id.frag_main, frag, "Login")*/
-            //.commit()
+            .replace(R.id.frag_main, frag, "Login")
+            .commit()
     }
 }

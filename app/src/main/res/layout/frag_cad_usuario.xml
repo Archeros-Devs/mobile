@@ -190,8 +190,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:inputType="text"
-            android:hint="@string/estado" />
+
+            android:hint="@string/estado"
+            android:inputType="text|textCapWords" />
 
         <Button
             android:id="@+id/btSalvar"
