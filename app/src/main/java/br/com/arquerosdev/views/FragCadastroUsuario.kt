@@ -229,7 +229,7 @@ class FragCadastroUsuario : Fragment() {
              view.etSenha.text.toString(),
              genero,
              view.etEmail.text.toString(),
-            "",
+            "",// TODO: criar funcaio para captura de img via File ou Camera
             idProfissao,
             false,//TODO: Nico VALIDAR DEPOIS -> ATIVAR DEPOIS NO LADO DO SERVIDOR
             0,
@@ -237,7 +237,7 @@ class FragCadastroUsuario : Fragment() {
         )
         val usuarioViewModel = ViewModelProvider(this)
             .get(UsuarioViewModel::class.java)
-        //usuarioViewModel.insert(usuario)
+        usuarioViewModel.insert(usuario)
 
         val endereco = ModelEndereco(
             0,//TODO: Nico gerar automatico no SERVIDOR
@@ -254,9 +254,9 @@ class FragCadastroUsuario : Fragment() {
             .get(EnderecoViewModel::class.java)
         enderecoViewModel.insert(endereco)
 
-        val frag = FragmentsLogin()
+        val frag = FragService()
             this.activity!!.supportFragmentManager.beginTransaction()
-            .replace(R.id.frag_main, frag, "Login")
+            .replace(R.id.frag_main, frag, "Service")
             .commit()
     }
 }

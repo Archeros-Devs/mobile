@@ -136,6 +136,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="textPostalAddress"
+            android:text="Rua do Teste"
             android:hint="@string/endereco" />
 
         <EditText
@@ -145,6 +146,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="number"
+            android:text="1234"
             android:hint="@string/numero" />
 
         <EditText
@@ -154,6 +156,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="text"
+            android:text="Teste do Comprimento"
             android:hint="@string/Complemento" />
 
         <!-- TODO: Criar mascara para CEP 12345-123  -->
@@ -164,6 +167,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="number"
+            android:text="12345123"
             android:hint="@string/cep" />
 
         <EditText
@@ -173,6 +177,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="text"
+            android:text="JD. do Teste"
             android:hint="@string/bairro" />
 
         <EditText
@@ -182,6 +187,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="text"
+            android:text="Santo do Teste"
             android:hint="@string/cidade" />
 
         <EditText
@@ -190,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-
+            android:text="SP"
             android:hint="@string/estado"
             android:inputType="text|textCapWords" />
 

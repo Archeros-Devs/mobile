@@ -12,7 +12,7 @@ interface EnderecoDao {
     @Query("SELECT * FROM Endereco limit 1")
     fun getEndereco(): LiveData<ModelEndereco>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(modelEndereco: ModelEndereco)
 
     @Query("UPDATE Endereco SET id_usuario = :id and endereco = :endereco")
