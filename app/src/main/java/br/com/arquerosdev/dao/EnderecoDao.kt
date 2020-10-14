@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import br.com.arquerosdev.model.ModelEndereco
+import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface EnderecoDao {
@@ -15,6 +16,9 @@ interface EnderecoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(modelEndereco: ModelEndereco)
 
-    @Query("UPDATE Endereco SET id_usuario = :id and endereco = :endereco")
+    @Query("UPDATE Endereco SET id_endereco = :id and endereco = :endereco")
     suspend fun updateUsuario(id: Int, endereco: String)
+
+    @Query("SELECT * FROM Endereco WHERE sync = 1")
+    fun getSync(): LiveData<ModelEndereco>
 }

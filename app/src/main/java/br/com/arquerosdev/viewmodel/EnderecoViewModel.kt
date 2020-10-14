@@ -26,4 +26,8 @@ class EnderecoViewModel (application: Application) : AndroidViewModel(applicatio
     fun insert(modelEndereco: ModelEndereco) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelEndereco)
     }
+
+    fun getSync():LiveData<ModelEndereco>{
+        return repository.getSync()
+    }
 }

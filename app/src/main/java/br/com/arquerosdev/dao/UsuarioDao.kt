@@ -1,10 +1,7 @@
 package br.com.arquerosdev.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
@@ -15,9 +12,16 @@ interface UsuarioDao {
     @Query("SELECT * FROM Usuario WHERE email = :email AND senha = :senha")
     fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>
 
+    @Query("SELECT * FROM Usuario WHERE sync = 1")
+    fun getSync(): LiveData<ModelUsuario>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(modelUsuario: ModelUsuario)
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun update(modelUsuario: ModelUsuario)
+
+    //TODO: Rever essa ação de desativação/broqueio de usuario no app
     @Query("UPDATE Usuario SET ativo = 'DISABLE' WHERE cpf = :cpf")
     suspend fun deleteUsuario(cpf: String)
 }

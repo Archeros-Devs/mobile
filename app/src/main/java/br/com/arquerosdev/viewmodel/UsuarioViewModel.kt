@@ -25,7 +25,16 @@ class UsuarioViewModel (application: Application) : AndroidViewModel(application
         return repository.getCheckCredenciais(email, senha)
     }
 
+    fun getSync(): LiveData<ModelUsuario>{
+        return repository.getSync()
+    }
+
     fun insert(modelUsuario: ModelUsuario) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelUsuario)
     }
+
+    fun update(modelUsuario: ModelUsuario) = viewModelScope.launch(Dispatchers.IO) {
+        repository.update(modelUsuario)
+    }
+
 }

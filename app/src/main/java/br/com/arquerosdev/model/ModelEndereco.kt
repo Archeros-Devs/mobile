@@ -3,15 +3,16 @@ package br.com.arquerosdev.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 
 @Entity(tableName = "Endereco")
 data class ModelEndereco (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_endereco")
-    var idEndereco: Int,
+    var id_Endereco: Int,
 
     @ColumnInfo(name = "id_usuario")
-    var idUsuario: Int,
+    var id_Usuario: Int,
 
     @ColumnInfo(name = "cidade")
         var cidade: String?,
@@ -32,5 +33,9 @@ data class ModelEndereco (
         var bairro: String?,
 
     @ColumnInfo(name = "complemento")
-        var complemento: String?
+        var complemento: String?,
+
+    @Expose
+    @ColumnInfo(name = "sync")
+    val sync: Boolean?
 )

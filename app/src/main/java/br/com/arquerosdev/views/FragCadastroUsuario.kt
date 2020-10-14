@@ -1,16 +1,14 @@
 package br.com.arquerosdev.views
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.R
 import br.com.arquerosdev.model.ModelEndereco
@@ -29,7 +27,11 @@ class FragCadastroUsuario : Fragment() {
     var idProfissao = 0
     lateinit var funcoes:ChecarFuncoes
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater?.inflate(R.layout.frag_cad_usuario, container, false)
 
         configuracoesViewsProfissoes(view)
@@ -54,23 +56,25 @@ class FragCadastroUsuario : Fragment() {
         val profissaoViewModel: ProfisaoViewModel = ViewModelProvider(this)
             .get(ProfisaoViewModel::class.java)
 
-        profissaoViewModel.listNomeProfissao.observe(activity!!, Observer{ listaNome ->
+        profissaoViewModel.listNomeProfissao.observe(activity!!, Observer { listaNome ->
             val adapter = ArrayAdapter<String>(
                 context!!,
                 android.R.layout.simple_dropdown_item_1line,
                 listaNome
             )
             actvProfissao.setAdapter(adapter)
-            actvProfissao.onItemClickListener = AdapterView.OnItemClickListener{
-                    parent,view,position,id->
-                val itemSelecionado = parent.getItemAtPosition(position).toString()
-                //Pegar id do Objeto na tabela
-                profissaoViewModel.modelProfissao.observe(activity!!, Observer{ idLinha ->
-                    idProfissao = idLinha.indexOfFirst { it.nome == itemSelecionado}
-                })
-            }
-            actvProfissao.onFocusChangeListener = View.OnFocusChangeListener{
-                    view, b ->  if(b){ actvProfissao.showDropDown() }
+            actvProfissao.onItemClickListener =
+                AdapterView.OnItemClickListener { parent, view, position, id ->
+                    val itemSelecionado = parent.getItemAtPosition(position).toString()
+                    //Pegar id do Objeto na tabela
+                    profissaoViewModel.modelProfissao.observe(activity!!, Observer { idLinha ->
+                        idProfissao = idLinha.indexOfFirst { it.nome == itemSelecionado }
+                    })
+                }
+            actvProfissao.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+                if (b) {
+                    actvProfissao.showDropDown()
+                }
             }
         })
     }
@@ -78,23 +82,28 @@ class FragCadastroUsuario : Fragment() {
     private fun configuracoesViewsEscolaridade(view: View) {
         val escolaridadeViewModel: EscolaridadeViewModel = ViewModelProvider(this)
             .get(EscolaridadeViewModel::class.java)
-        escolaridadeViewModel.listNomeEscolaridade.observe(activity!!, Observer{ listaNome ->
+        escolaridadeViewModel.listNomeEscolaridade.observe(activity!!, Observer { listaNome ->
             val adapter = ArrayAdapter<String>(
                 context!!,
                 android.R.layout.simple_dropdown_item_1line,
                 listaNome
             )
             actvEscolaridade.setAdapter(adapter)
-            actvEscolaridade.onItemClickListener = AdapterView.OnItemClickListener{
-                    parent,view,position,id->
-                val itemSelecionado = parent.getItemAtPosition(position).toString()
-                //Pegar id do Objeto na tabela
-                escolaridadeViewModel.modelEscolaridade.observe(activity!!, Observer{ idLinha ->
-                    idEscolaridade = idLinha.indexOfFirst { it.escolaridade == itemSelecionado}
-                })
-            }
-            actvEscolaridade.onFocusChangeListener = View.OnFocusChangeListener{
-                    view, b ->  if(b){ actvEscolaridade.showDropDown() }
+            actvEscolaridade.onItemClickListener =
+                AdapterView.OnItemClickListener { parent, view, position, id ->
+                    val itemSelecionado = parent.getItemAtPosition(position).toString()
+                    //Pegar id do Objeto na tabela
+                    escolaridadeViewModel.modelEscolaridade.observe(
+                        activity!!,
+                        Observer { idLinha ->
+                            idEscolaridade =
+                                idLinha.indexOfFirst { it.escolaridade == itemSelecionado }
+                        })
+                }
+            actvEscolaridade.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+                if (b) {
+                    actvEscolaridade.showDropDown()
+                }
             }
         })
     }
@@ -150,7 +159,7 @@ class FragCadastroUsuario : Fragment() {
         }
         if(!checarGenero){
             view.genero_m.requestFocus()
-            Toast.makeText(activity,getText(R.string.msg_error_gerero),Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, getText(R.string.msg_error_gerero), Toast.LENGTH_LONG).show()
             return false
         }
 
@@ -217,23 +226,25 @@ class FragCadastroUsuario : Fragment() {
     fun salvarCadastro(view: View){
 
         var genero = "outros"
-        if (view.genero_m.isChecked) genero = "M"
-        if (view.genero_f.isChecked) genero = "F"
+        if (view.genero_m.isChecked) genero = "masculino"
+        if (view.genero_f.isChecked) genero = "feminino"
 
         //view.etSenhaConf
         val usuario = ModelUsuario(
-            0 ,//TODO: Nico gerar automatico no SERVIDOR
+            0,
+            0,//TODO: Nico gerar automatico no SERVIDOR
             idProfissao,
-             view.etCpf.text.toString(),
-             view.etNomeCompleto.text.toString(),
-             view.etSenha.text.toString(),
-             genero,
-             view.etEmail.text.toString(),
+            view.etCpf.text.toString(),
+            view.etNomeCompleto.text.toString(),
+            view.etSenha.text.toString(),
+            genero,
+            view.etEmail.text.toString(),
             "",// TODO: criar funcaio para captura de img via File ou Camera
             idProfissao,
             false,//TODO: Nico VALIDAR DEPOIS -> ATIVAR DEPOIS NO LADO DO SERVIDOR
             0,
-            view.etTelefone.text.toString()
+            view.etTelefone.text.toString(),
+            true
         )
         val usuarioViewModel = ViewModelProvider(this)
             .get(UsuarioViewModel::class.java)
@@ -248,13 +259,20 @@ class FragCadastroUsuario : Fragment() {
             view.etEndereco.text.toString(),
             view.etNumero.text.toString(),
             view.etBairro.text.toString(),
-            view.etComplemento.text.toString()
+            view.etComplemento.text.toString(),
+            true
         )
         val enderecoViewModel: EnderecoViewModel = ViewModelProvider(this)
             .get(EnderecoViewModel::class.java)
         enderecoViewModel.insert(endereco)
 
+        val bundle = Bundle()
+        bundle.putString("service","cadastro")
+
+        activity!!.getSupportFragmentManager().popBackStack()
+
         val frag = FragService()
+        frag.arguments = bundle
             this.activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.frag_main, frag, "Service")
             .commit()

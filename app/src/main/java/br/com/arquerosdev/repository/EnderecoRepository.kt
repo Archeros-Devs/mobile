@@ -15,4 +15,8 @@ class EnderecoRepository(private val enderecoDao: EnderecoDao) {
     suspend fun insert(modelEndereco: ModelEndereco) {
         enderecoDao.insert(modelEndereco)
     }
+
+    fun getSync():LiveData<ModelEndereco>{
+        return enderecoDao.getSync()
+    }
 }

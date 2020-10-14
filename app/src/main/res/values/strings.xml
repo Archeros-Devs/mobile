@@ -45,6 +45,8 @@
     <string name="msg_error_escolaridade">Escolher um dos itens na lista!</string>
     <string name="msg_error_profissao">Escolher um dos itens na lista!</string>
     <string name="msg_error_endereco">Endereço inválido!</string>
+    <string name="cadastro_sucesso">Cadastrado com sucesso!</string>
+    <string name="cadastro_erro">Já cadastrado!</string>
 
     <string-array name="categorias_array">
         <item>Selecione uma categoria</item>

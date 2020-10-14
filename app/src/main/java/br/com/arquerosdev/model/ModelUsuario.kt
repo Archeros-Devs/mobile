@@ -3,16 +3,21 @@ package br.com.arquerosdev.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "Usuario")
 data class ModelUsuario (
+    @Expose
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id : Int,
+    //@PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_usuario")
-    val idUsuario : Int,
+    val id_usuario : Int,
 
     @ColumnInfo(name = "id_profissao")
-    val idProfissao: Int?,
+    val id_profissao: Int?,
 
     @NotNull
     @ColumnInfo(name = "cpf")
@@ -34,23 +39,21 @@ data class ModelUsuario (
     val email: String?,
 
     @ColumnInfo(name = "url_img")
-    val urlImg: String?,
+    val url_img: String?,
 
     @ColumnInfo(name = "id_escolaridade")
-    val idEscolaridade: Int?,
+    val id_escolaridade: Int?,
 
     @ColumnInfo(name = "ativo")
     val ativo: Boolean?,
 
     @ColumnInfo(name = "tipo_usuario")
-    val tipoUsuario: Int?,
-
-/*    @ColumnInfo(name = "criado_em")
-    val criadoEm: Timestamp?,
-
-    @ColumnInfo(name = "deletado_em")
-    val deletadoEm: Timestamp?,*/
+    val tipo_usuario: Int?,
 
     @ColumnInfo(name = "telefone")
-    val telefone: String?
+    val telefone: String?,
+
+    @Expose
+    @ColumnInfo(name = "sync")
+    val sync: Boolean?
 )

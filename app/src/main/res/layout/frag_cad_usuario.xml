@@ -25,7 +25,7 @@
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
             android:hint="@string/nome_completo"
-            android:text="DEU CERTO"/>
+            android:text="Fernando Franco"/>
 
         <EditText
             android:id="@+id/etCpf"
@@ -35,7 +35,7 @@
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
             android:hint="@string/cpf"
-            android:text="33882811811"/>
+            android:text="81543269494"/>
 
         <EditText
             android:id="@+id/etEmail"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="20dp"
             android:inputType="textEmailAddress"
             android:hint="@string/email"
-            android:text="fernando.franco@impacta.com"/>
+            android:text="fernando14.franco14@impacta.com"/>
 
         <EditText
             android:id="@+id/etSenha"

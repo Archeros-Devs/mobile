@@ -14,7 +14,16 @@ class UsuarioRepository(private val usuarioDao: UsuarioDao) {
         return usuarioDao.getCheckCredenciais(email, senha)
     }
 
+    fun getSync(): LiveData<ModelUsuario>{
+        return usuarioDao.getSync()
+    }
+
     suspend fun insert(modelUsuario: ModelUsuario) {
         usuarioDao.insert(modelUsuario)
     }
+
+    suspend fun update(modelUsuario: ModelUsuario) {
+        usuarioDao.update(modelUsuario)
+    }
+
 }
