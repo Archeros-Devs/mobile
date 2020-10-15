@@ -20,6 +20,7 @@ import br.com.arquerosdev.R
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
+
 class FragmentsLogin : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_login, container, false)
@@ -54,8 +55,8 @@ class FragmentsLogin : Fragment() {
                     .observe(activity!!, Observer{ usuario ->
                         //TODO: Arrumar essa regra
                         if(!usuario.ativo!!){
-                            val it = Intent(activity!!, MainActivity::class.java)
-                            startActivity(it)
+                            /*val it = Intent(activity!!, MainActivity::class.java)
+                            startActivity(it)*/
                         }else{
                             Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
                         }
