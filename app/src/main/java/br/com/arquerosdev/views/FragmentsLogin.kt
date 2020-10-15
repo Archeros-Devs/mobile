@@ -1,5 +1,6 @@
 package br.com.arquerosdev.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import br.com.arquerosdev.MainActivity
 import br.com.arquerosdev.R
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import kotlinx.android.synthetic.main.fragment_login.view.*
@@ -39,8 +41,9 @@ class FragmentsLogin : Fragment() {
             val logadoComSucesso = usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
                 .observe(activity!!, Observer{ usuario ->
                     if(usuario.ativo!!){
-                        //TODO: camada para o dashboard
-                        Toast.makeText(context, "Falta alguem fazer o Dashboard", Toast.LENGTH_LONG).show()
+                        val it = Intent(activity!!, MainActivity::class.java)
+                        startActivity(it)
+                        Toast.makeText(context, "Dashboard feito!!", Toast.LENGTH_LONG).show()
                     }else{
                         Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
                     }
