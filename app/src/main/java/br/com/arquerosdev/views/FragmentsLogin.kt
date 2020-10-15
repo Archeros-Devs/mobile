@@ -2,6 +2,7 @@ package br.com.arquerosdev.views
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
@@ -46,14 +47,14 @@ class FragmentsLogin : Fragment() {
 
         if(!view.edEmail.text.toString().isNullOrBlank() || !view.edSenha.text.toString().isNullOrBlank()){
             if(isConexted){
-                
+
             }else{
                 val logadoComSucesso = usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
                     .observe(activity!!, Observer{ usuario ->
                         //TODO: Arrumar essa regra
                         if(!usuario.ativo!!){
-                            //TODO: camada para o dashboard
-                            Toast.makeText(context, "Falta fazer o Dashboard :D", Toast.LENGTH_LONG).show()
+                            val it = Intent(activity!!, MainActivity::class.java)
+                            startActivity(it)
                         }else{
                             Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
                         }
