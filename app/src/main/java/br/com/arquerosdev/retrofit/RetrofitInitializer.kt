@@ -21,7 +21,7 @@ class RetrofitInitializer {
      *   return retrofit.create(ProfissoesService::class.java)
      *  }
      */
-    //TODO: FALTA CONEXAO COM A API
+
     fun apisService() = retrofit.create(APIsService::class.java)
 
 }

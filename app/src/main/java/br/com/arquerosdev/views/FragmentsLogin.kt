@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import br.com.arquerosdev.MainActivity
 import br.com.arquerosdev.R
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import kotlinx.android.synthetic.main.fragment_login.view.*

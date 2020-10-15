@@ -10,7 +10,7 @@ open class ChecarFuncoes(context: Context) {
 
     init {ctx = context}
 
-    //TODO criar um validador de CFF
+    //TODO criar um validador de CFP
     fun cpfNaoValido(cpf: String): Boolean {
         return false
     }
