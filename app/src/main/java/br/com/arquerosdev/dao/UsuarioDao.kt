@@ -9,7 +9,7 @@ interface UsuarioDao {
     @Query("SELECT * FROM Usuario WHERE ativo = '1' limit 1")
     fun getAsUsuarioLogado(): LiveData<ModelUsuario>
 
-    @Query("SELECT * FROM Usuario WHERE email = :email AND senha = :senha")
+    @Query("SELECT * FROM Usuario WHERE email = :email and  senha = :senha limit 1")
     fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>
 
     @Query("SELECT * FROM Usuario WHERE sync = 1")
@@ -18,7 +18,7 @@ interface UsuarioDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(modelUsuario: ModelUsuario)
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
+    @Update
     suspend fun update(modelUsuario: ModelUsuario)
 
     //TODO: Rever essa ação de desativação/broqueio de usuario no app

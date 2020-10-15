@@ -7,6 +7,7 @@ import br.com.arquerosdev.model.ModelProfissao
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.RetrofitInitializer
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,7 +68,7 @@ class APIsWebClient {
                     }
                     callbackResponse.sucess(resUsuario!!)
                 }else{
-                    callbackResponse.error("Hiiii algo deu errado!")
+                    callbackResponse.error("CPF ou email já cadastrados")//gson.toJson(response.errorBody())
                 }
             }
 

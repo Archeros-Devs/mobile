@@ -231,7 +231,6 @@ class FragCadastroUsuario : Fragment() {
 
         //view.etSenhaConf
         val usuario = ModelUsuario(
-            0,
             0,//TODO: Nico gerar automatico no SERVIDOR
             idProfissao,
             view.etCpf.text.toString(),
@@ -241,7 +240,7 @@ class FragCadastroUsuario : Fragment() {
             view.etEmail.text.toString(),
             "",// TODO: criar funcaio para captura de img via File ou Camera
             idProfissao,
-            false,//TODO: Nico VALIDAR DEPOIS -> ATIVAR DEPOIS NO LADO DO SERVIDOR
+            true,//TODO: Nico VALIDAR DEPOIS -> ATIVAR DEPOIS NO LADO DO SERVIDOR
             0,
             view.etTelefone.text.toString(),
             true
@@ -268,8 +267,6 @@ class FragCadastroUsuario : Fragment() {
 
         val bundle = Bundle()
         bundle.putString("service","cadastro")
-
-        activity!!.getSupportFragmentManager().popBackStack()
 
         val frag = FragService()
         frag.arguments = bundle

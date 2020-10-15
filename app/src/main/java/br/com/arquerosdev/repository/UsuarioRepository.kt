@@ -11,7 +11,7 @@ class UsuarioRepository(private val usuarioDao: UsuarioDao) {
     }
 
     fun getCheckCredenciais(email: String, senha: String): LiveData<ModelUsuario>{
-        return usuarioDao.getCheckCredenciais(email, senha)
+        return usuarioDao.getCheckCredenciais(email, senha)//
     }
 
     fun getSync(): LiveData<ModelUsuario>{

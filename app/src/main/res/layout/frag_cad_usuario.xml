@@ -35,7 +35,7 @@
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
             android:hint="@string/cpf"
-            android:text="81543269494"/>
+            android:text="64849546404"/>
 
         <EditText
             android:id="@+id/etEmail"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="20dp"
             android:inputType="textEmailAddress"
             android:hint="@string/email"
-            android:text="fernando14.franco14@impacta.com"/>
+            android:text="fernandoss.francoss@impacta.com"/>
 
         <EditText
             android:id="@+id/etSenha"

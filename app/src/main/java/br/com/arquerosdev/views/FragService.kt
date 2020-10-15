@@ -50,22 +50,18 @@ class FragService : Fragment() {
                         usuarioViewModel.update(response)
                         Toast.makeText(activity!!,getText(R.string.cadastro_sucesso),Toast.LENGTH_LONG).show()
 
-                        val frag = FragCadastroUsuario()
-                        activity!!.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frag_main, frag, "cadastro")
-                            .commit()
-
-                        activity!!.getSupportFragmentManager().popBackStack()
+                        val fragLogin = FragmentsLogin()
+                        activity!!.supportFragmentManager.beginTransaction()
+                        .replace(R.id.frag_main, fragLogin, "fragLogin")
+                        .commit()
                     }
 
                     override fun error(response: String) {
                         Toast.makeText(activity!!,response,Toast.LENGTH_LONG).show()
                         val frag = FragCadastroUsuario()
-                        activity!!.getSupportFragmentManager().beginTransaction()
+                        activity!!.supportFragmentManager.beginTransaction()
                             .replace(R.id.frag_main, frag, "cadastro")
                             .commit()
-
-                        activity!!.getSupportFragmentManager().popBackStack()
                     }
                 })
             })

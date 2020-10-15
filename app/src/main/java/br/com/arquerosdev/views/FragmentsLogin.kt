@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.MainActivity
 import br.com.arquerosdev.R
+import br.com.arquerosdev.viewmodel.ProfisaoViewModel
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
@@ -25,15 +26,19 @@ class FragmentsLogin : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_login, container, false)
         view.bt_login.setOnClickListener { btview ->
-            Log.e("teste", "*********")
             checarCredenciais(view)
         }
 
         view.bt_cadastro.setOnClickListener { view ->
-            val frag = FragCadastroUsuario()
-            activity!!.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frag_main, frag, "cadastro")
-                .commit()
+            if(verifyAvailableNetwork(activity!!)){
+                val frag = FragCadastroUsuario()
+                activity!!.supportFragmentManager.beginTransaction()
+                    .replace(R.id.frag_main, frag, "cadastro")
+                    .commit()
+            }else{
+                Toast.makeText(context, "Necessita de Intenert para cadastro!", Toast.LENGTH_LONG).show()
+            }
+
         }
 
         return view
@@ -51,12 +56,12 @@ class FragmentsLogin : Fragment() {
             if(isConexted){
 
             }else{
-                val logadoComSucesso = usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
+                    usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
                     .observe(activity!!, Observer{ usuario ->
-                        //TODO: Arrumar essa regra
-                        if(!usuario.ativo!!){
-                            /*val it = Intent(activity!!, MainActivity::class.java)
-                            startActivity(it)*/
+                        if(usuario!=null && usuario.ativo!!){
+                            val it = Intent(activity!!, MainActivity::class.java)
+                            startActivity(it)
+                            activity!!.finish()
                         }else{
                             Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
                         }
@@ -67,7 +72,8 @@ class FragmentsLogin : Fragment() {
         }
     }
 
-    fun verifyAvailableNetwork(activity: Activity):Boolean{
+    //TODO: fazer essa funcao publica para ser utlilizada em varios locais
+    private fun verifyAvailableNetwork(activity: Activity):Boolean{
         val cm = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
         return activeNetwork?.isConnectedOrConnecting == true
