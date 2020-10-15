@@ -10,9 +10,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.model.ModelEscolaridade
 import br.com.arquerosdev.model.ModelProfissao
-import br.com.arquerosdev.retrofit.service.ProfissoesResponse
 import br.com.arquerosdev.retrofit.service.APIsWebClient
-import br.com.arquerosdev.retrofit.service.EscolaridadeResponse
+import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.EscolaridadeViewModel
 import br.com.arquerosdev.viewmodel.ProfisaoViewModel
 
@@ -34,14 +33,17 @@ class SplashActivity : BaseActivity(){
         }
 
     }
-
     private fun callProfissoes(){
         val profissaoViewModel: ProfisaoViewModel = ViewModelProvider(this)
             .get(ProfisaoViewModel::class.java)
-        APIsWebClient().listProfissoes(object: ProfissoesResponse {
-            override fun sucess(profissoes: List<ModelProfissao>) {
-                profissaoViewModel.insert(profissoes)
+        APIsWebClient().listProfissoes(object: CallbackResponse<List<ModelProfissao>> {
+            override fun sucess(response: List<ModelProfissao>) {
+                profissaoViewModel.insert(response)
                 callEscolaridade()
+            }
+
+            override fun error(response: String) {
+                TODO("Not yet implemented")
             }
 
         })
@@ -50,11 +52,15 @@ class SplashActivity : BaseActivity(){
     private fun callEscolaridade(){
         val escolaridadeViewModel: EscolaridadeViewModel = ViewModelProvider(this)
             .get(EscolaridadeViewModel::class.java)
-        APIsWebClient().listEscolaridade(object: EscolaridadeResponse {
-            override fun sucess(escolaridades: List<ModelEscolaridade>) {
-                escolaridadeViewModel.insert(escolaridades)
+        APIsWebClient().listEscolaridade(object: CallbackResponse<List<ModelEscolaridade>> {
+            override fun sucess(response: List<ModelEscolaridade>) {
+                escolaridadeViewModel.insert(response)
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish()
+            }
+
+            override fun error(response: String) {
+                TODO("Not yet implemented")
             }
         })
     }

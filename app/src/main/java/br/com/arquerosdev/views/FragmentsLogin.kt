@@ -50,20 +50,20 @@ class FragmentsLogin : Fragment() {
 
     fun checarCredenciais(view: View){
 
-        val isConexted = verifyAvailableNetwork(activity!!)
-        Log.e("teste",isConexted.toString())
-
+        val isConect = verifyAvailableNetwork(activity!!)
         val usuarioViewModel = ViewModelProvider(this)
             .get(UsuarioViewModel::class.java)
 
         if(!view.edEmail.text.toString().isNullOrBlank() || !view.edSenha.text.toString().isNullOrBlank()){
-            if(isConexted){
+            if(isConect){
                 val login = JsonObject()
+
                 login.addProperty("email",view.edEmail.text.toString())
                 login.addProperty("senha",view.edSenha.text.toString())
+
                 APIsWebClient().loginUsuario(login, object : CallbackResponse<Map<String, Any>> {
                     override fun sucess(response: Map<String, Any>) {
-                        //TODO: Salvar Token para ser usado em outras APIs
+                        //TODO: Salvar Token para ser usado em outras APIs(salvar na tabela / file / sabe Deus)
                         Toast.makeText(activity!!,response.get("token").toString(),Toast.LENGTH_LONG).show()
                         val it = Intent(activity!!, MainActivity::class.java)
                         startActivity(it)

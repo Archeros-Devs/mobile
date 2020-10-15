@@ -13,7 +13,10 @@ interface PastaDao {
     @Query("SELECT * FROM Pasta")
     fun pegarPasta(): LiveData<List<ModelPasta>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(pasta: List<ModelPasta>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun inserList(listModelPasta: List<ModelPasta>)
 
 }

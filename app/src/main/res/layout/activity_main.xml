@@ -41,6 +41,9 @@
                 android:layout_margin="10dp"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="12dp"
+                android:id="@+id/btListarPastas"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 app:cardElevation="5dp">
 
                 <LinearLayout

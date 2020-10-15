@@ -1,6 +1,7 @@
 package br.com.arquerosdev.retrofit.service
 
 import br.com.arquerosdev.model.ModelEscolaridade
+import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.model.ModelProfissao
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -26,4 +27,7 @@ interface APIsService {
 
     @POST("enderecos")
     fun insertEndereco(@Body enderecos: String): Call<String>
+
+    @GET("pastas")
+    fun listPastas(): Call<JsonObject>
 }

@@ -13,4 +13,8 @@ class PastaRepository (private val pastaDao: PastaDao) {
     suspend fun insert(modelPasta: List<ModelPasta>) {
         pastaDao.insert(modelPasta)
     }
+
+    suspend fun inserList(listModelPasta: List<ModelPasta>) {
+        pastaDao.inserList(listModelPasta)
+    }
 }

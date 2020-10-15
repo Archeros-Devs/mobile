@@ -24,4 +24,8 @@ class PastaViewModel (application: Application) : AndroidViewModel(application) 
     fun insert(modelPasta: List<ModelPasta>) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelPasta)
     }
+
+    fun inserList(listModelPasta: List<ModelPasta>) = viewModelScope.launch(Dispatchers.IO) {
+        repository.inserList(listModelPasta)
+    }
 }

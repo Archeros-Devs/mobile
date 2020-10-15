@@ -3,6 +3,7 @@ package br.com.arquerosdev.retrofit.service;
 import android.util.Log
 import android.widget.Toast
 import br.com.arquerosdev.model.ModelEscolaridade
+import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.model.ModelProfissao
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.RetrofitInitializer
@@ -14,7 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class APIsWebClient {
-    fun listProfissoes(res: ProfissoesResponse){
+    fun listProfissoes(res: CallbackResponse<List<ModelProfissao>>){
         // Lista
         val call = RetrofitInitializer().apisService().listProfissao()
         call.enqueue(object: Callback<List<ModelProfissao>?> {
@@ -32,7 +33,7 @@ class APIsWebClient {
         })
     }
 
-    fun listEscolaridade(res: EscolaridadeResponse){
+    fun listEscolaridade(res: CallbackResponse<List<ModelEscolaridade>>){
         // Lista
         val call = RetrofitInitializer().apisService().listEscolaridade()
         call.enqueue(object: Callback<List<ModelEscolaridade>?> {
@@ -104,4 +105,20 @@ class APIsWebClient {
         })
     }
 
+    fun listPastas(res: CallbackResponse<JsonObject>){
+        val call = RetrofitInitializer().apisService().listPastas()
+        call.enqueue(object: Callback<JsonObject?> {
+            override fun onResponse(call: Call<JsonObject?>?,
+                                    response: Response<JsonObject?>?) {
+                response?.body()?.let {
+                    res.sucess(it)
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject?>?,
+                                   t: Throwable?) {
+                Log.e("onFailure error", "error "+t.toString())
+            }
+        })
+    }
 }
