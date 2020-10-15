@@ -7,6 +7,7 @@ import br.com.arquerosdev.model.ModelProfissao
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.RetrofitInitializer
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
@@ -69,6 +70,31 @@ class APIsWebClient {
                     callbackResponse.sucess(resUsuario!!)
                 }else{
                     callbackResponse.error("CPF ou email já cadastrados")//gson.toJson(response.errorBody())
+                }
+            }
+
+            override fun onFailure(call: Call<String?>?, t: Throwable?) {
+                Log.i("teste", t.toString())
+            }
+        })
+    }
+
+    fun loginUsuario(login:JsonObject, callbackResponse: CallbackResponse<Map<String, Any>>){
+        val call = RetrofitInitializer().apisService().loginUsuario(login)
+        call.enqueue(object: Callback<String?> {
+            override fun onResponse(call: Call<String?>?, response: Response<String?>?) {
+
+                if(response!!.code() == 200){
+                    try{
+                        val gson = Gson()
+                        val typeResponse = object : TypeToken<Map<String, Any>>() {}.type
+                        val jbResponse: Map<String, Any> = gson.fromJson(response.body(), typeResponse)
+                        callbackResponse.sucess(jbResponse)
+                    }catch (e:Exception){
+                        Log.e("Error",e.toString())
+                    }
+                }else{
+                    callbackResponse.error("Login inválido!")//gson.toJson(response.errorBody())
                 }
             }
 

@@ -17,8 +17,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.MainActivity
 import br.com.arquerosdev.R
+import br.com.arquerosdev.model.ModelUsuario
+import br.com.arquerosdev.retrofit.service.APIsWebClient
+import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.ProfisaoViewModel
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
 
@@ -54,7 +58,22 @@ class FragmentsLogin : Fragment() {
 
         if(!view.edEmail.text.toString().isNullOrBlank() || !view.edSenha.text.toString().isNullOrBlank()){
             if(isConexted){
+                val login = JsonObject()
+                login.addProperty("email",view.edEmail.text.toString())
+                login.addProperty("senha",view.edSenha.text.toString())
+                APIsWebClient().loginUsuario(login, object : CallbackResponse<Map<String, Any>> {
+                    override fun sucess(response: Map<String, Any>) {
+                        //TODO: Salvar Token para ser usado em outras APIs
+                        Toast.makeText(activity!!,response.get("token").toString(),Toast.LENGTH_LONG).show()
+                        val it = Intent(activity!!, MainActivity::class.java)
+                        startActivity(it)
+                        activity!!.finish()
+                    }
 
+                    override fun error(response: String) {
+                        Toast.makeText(activity!!,response,Toast.LENGTH_LONG).show()
+                    }
+                })
             }else{
                     usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
                     .observe(activity!!, Observer{ usuario ->
