@@ -24,8 +24,7 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
-            android:hint="@string/nome_completo"
-            android:text="Fernando Franco"/>
+            android:hint="@string/nome_completo"/>
 
         <EditText
             android:id="@+id/etCpf"
@@ -34,8 +33,7 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
-            android:hint="@string/cpf"
-            android:text="29735152207"/>
+            android:hint="@string/cpf"/>
 
         <EditText
             android:id="@+id/etEmail"
@@ -44,8 +42,7 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textEmailAddress"
-            android:hint="@string/email"
-            android:text="fernandoxx.francoxx@impacta.com"/>
+            android:hint="@string/email"/>
 
         <EditText
             android:id="@+id/etSenha"
@@ -54,8 +51,7 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textPassword"
-            android:hint="@string/senha"
-            android:text="123456"/>
+            android:hint="@string/senha"/>
 
         <EditText
             android:id="@+id/etSenhaConf"
@@ -64,8 +60,7 @@
             android:ems="10"
             android:layout_marginBottom="20dp"
             android:inputType="textPassword"
-            android:hint="@string/confirmar_senha"
-            android:text="123456"/>
+            android:hint="@string/confirmar_senha"/>
 
         <RadioGroup
             android:id="@+id/etGenero"
@@ -112,8 +107,7 @@
             android:layout_marginBottom="20dp"
             android:ems="15"
             android:inputType="phone"
-            android:hint="@string/telefone"
-            android:text="1197696051"/>
+            android:hint="@string/telefone"/>
 
         <AutoCompleteTextView
             android:id="@+id/actvProfissao"
@@ -136,7 +130,6 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="textPostalAddress"
-            android:text="Rua do Teste"
             android:hint="@string/endereco" />
 
         <EditText
@@ -146,7 +139,6 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="number"
-            android:text="1234"
             android:hint="@string/numero" />
 
         <EditText
@@ -156,7 +148,6 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Teste do Comprimento"
             android:hint="@string/Complemento" />
 
         <!-- TODO: Criar mascara para CEP 12345-123  -->
@@ -167,7 +158,6 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="number"
-            android:text="12345123"
             android:hint="@string/cep" />
 
         <EditText
@@ -177,7 +167,6 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="text"
-            android:text="JD. do Teste"
             android:hint="@string/bairro" />
 
         <EditText
@@ -187,7 +176,6 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Santo do Teste"
             android:hint="@string/cidade" />
 
         <EditText
@@ -196,7 +184,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:text="SP"
             android:hint="@string/estado"
             android:inputType="text|textCapWords" />
 
