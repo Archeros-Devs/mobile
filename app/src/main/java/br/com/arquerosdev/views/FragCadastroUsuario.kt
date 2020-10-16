@@ -131,7 +131,7 @@ class FragCadastroUsuario : Fragment() {
             return false
         }
 
-        //TODO: Colcoar componente para ver a senha
+        //TODO: Colocar componente para ver a senha
         val strSenha = view.etSenha.text.toString()
         if(strSenha.isBlank() || strSenha.length < 6){
             view.etSenha.requestFocus()
@@ -139,7 +139,7 @@ class FragCadastroUsuario : Fragment() {
             return false
         }
 
-        //TODO: Colcoar componente para ver a senha
+        //TODO: Colocar componente para ver a senha
         val strSenhaConf = view.etSenhaConf.text.toString()
         if(strSenhaConf != strSenha){
             view.etSenhaConf.requestFocus()
