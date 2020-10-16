@@ -1,25 +1,25 @@
 <resources>
-    <string name="app_name">Peruibe Melhor</string>
-    <string name="sobre_nome">Sobre nome</string>
+    <string name="app_name">Peruíbe Melhor</string>
+    <string name="sobre_nome">Sobrenome</string>
     <string name="senha">senha</string>
     <string name="login">login</string>
     <string name="aviso_login">e-mail</string>
     <string name="bt_login">Login</string>
-    <string name="bt_cadastro">Novo usuário ? Crie sua conta aqui</string>
-    <string name="preenche_cadastro">Preenche seus dados para cadastro</string>
+    <string name="bt_cadastro">Novo usuário? Crie sua conta aqui.</string>
+    <string name="preenche_cadastro">Preencha seus dados para cadastro</string>
     <string name="nome_completo">Nome Completo</string>
-    <string name="cpf">CFF</string>
+    <string name="cpf">CPF</string>
     <string name="masculino">M</string>
     <string name="feminino">F</string>
     <string name="outros">Outros</string>
     <string name="genero">Genero:</string>
-    <string name="email">email</string>
-    <string name="telefone">Telefone; 11 9 9999 9999</string>
+    <string name="email">Email</string>
+    <string name="telefone">Telefone 99 9 9999 9999</string>
     <string name="profissao">Profissão</string>
     <string name="escolaridade">Escolaridade</string>
     <string name="pr_ximo">Próximo</string>
     <string name="estado">Estado</string>
-    <string name="Complemento">complemento</string>
+    <string name="Complemento">Complemento</string>
     <string name="cidade">Cidade</string>
     <string name="endereco">Endereço</string>
     <string name="numero">Número</string>
@@ -28,26 +28,26 @@
     <string name="confirmar_senha">Confirmar Senha</string>
     <string name="salvar">Salvar</string>
     <string name="nome_pasta">Nome</string>
-    <string name="discusao">Discusao</string>
+    <string name="discusao">Discussão</string>
     <string name="descricao">Descrição</string>
     <string name="nova_pasta">Nova Pasta</string>
-    <string name="login_invalido">Login Inválido!</string>
-    <string name="campos_vazios">campos vazios!</string>
+    <string name="login_invalido">Login inválido!</string>
+    <string name="campos_vazios">Campos vazios!</string>
 
     <!-- Melhorar os texto das mensagens de erros -> msg_error_* -->
     <string name="msg_error_cpf">CPF inválido!</string>
-    <string name="msg_error_nome_completo">Favor colocar seu Nome Completo!</string>
-    <string name="msg_error_senha">Minino 6 Digitos!</string>
+    <string name="msg_error_nome_completo">Favor colocar seu nome completo!</string>
+    <string name="msg_error_senha">Mínimo 6 dígitos!</string>
     <string name="msg_error_senha_conf">A senha está diferente!</string>
     <string name="msg_error_email">Email inválido!</string>
-    <string name="msg_error_gerero">Escolha um genero!</string>
+    <string name="msg_error_gerero">Escolha um gênero!</string>
     <string name="msg_error_telefone">Número de telefone inválido!</string>
-    <string name="msg_error_escolaridade">Escolher um dos itens na lista!</string>
-    <string name="msg_error_profissao">Escolher um dos itens na lista!</string>
+    <string name="msg_error_escolaridade">Escolha um dos itens na lista!</string>
+    <string name="msg_error_profissao">Escolha um dos itens na lista!</string>
     <string name="msg_error_endereco">Endereço inválido!</string>
     <string name="cadastro_sucesso">Cadastrado com sucesso!</string>
     <string name="cadastro_erro">Já cadastrado!</string>
-    <string name="adinionar_pasta">Add Pasta</string>
+    <string name="adinionar_pasta">Adicionar Pasta</string>
 
 
     <string-array name="categorias_array">
