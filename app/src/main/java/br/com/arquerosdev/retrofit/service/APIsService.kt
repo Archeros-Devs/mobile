@@ -30,4 +30,8 @@ interface APIsService {
 
     @GET("pastas")
     fun listPastas(): Call<JsonObject>
+
+    @Headers("Content-Type: application/json")
+    @POST("pastas")
+    fun criarPastas(@Body usuario: String): Call<JsonObject>
 }

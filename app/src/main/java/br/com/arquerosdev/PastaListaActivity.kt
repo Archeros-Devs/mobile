@@ -1,8 +1,10 @@
 package br.com.arquerosdev
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -12,6 +14,7 @@ import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.PastaViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
@@ -25,6 +28,11 @@ class PastaListaActivity : AppCompatActivity() {
         recyclePastas?.layoutManager = LinearLayoutManager(this)
         recyclePastas?.itemAnimator = DefaultItemAnimator()
         recyclePastas?.setHasFixedSize(true)
+
+        val fab: View = findViewById(R.id.addPasta)
+        fab.setOnClickListener { view ->
+            startActivity(Intent(this, CriarPastaActivity::class.java))
+        }
 
         callPastas()
 

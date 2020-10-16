@@ -12,8 +12,11 @@ import br.com.arquerosdev.R
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import androidx.lifecycle.Observer
+import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.service.CallbackResponse
+import br.com.arquerosdev.viewmodel.PastaViewModel
+import com.google.gson.JsonObject
 
 class FragService : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,6 +26,7 @@ class FragService : Fragment() {
 
         when(bundle!!.getString("service")){
             "cadastro" -> enviaUsuarioEndereco()
+            //"nova_pasta" -> enviarNovaPasta(bundle)
         }
 
         return view

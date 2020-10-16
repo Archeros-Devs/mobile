@@ -79,6 +79,9 @@
                 android:layout_margin="10dp"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="12dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:id="@+id/btCriarPasta"
                 app:cardElevation="5dp">
 
                 <LinearLayout

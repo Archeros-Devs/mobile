@@ -1,0 +1,101 @@
+package br.com.arquerosdev
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import br.com.arquerosdev.model.ModelPasta
+import br.com.arquerosdev.retrofit.service.APIsWebClient
+import br.com.arquerosdev.retrofit.service.CallbackResponse
+import br.com.arquerosdev.viewmodel.PastaViewModel
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_nova_pasta.*
+
+class CriarPastaActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_nova_pasta)
+
+        etSalvar.setOnClickListener { salvarNovaPasta() }
+        etCancelar.setOnClickListener { finish() }
+
+    }
+
+    private fun salvarNovaPasta(){
+
+        if(checarCampos()){
+            val nomePasta = etNome_pasta.text.toString()
+            val discusao = etDiscusao.text.toString()
+            val categorias = spCategorias.selectedItem.toString()
+            val descricao = etDescricao.text.toString()
+            val endereco = etEndereco.text.toString()
+
+            val pasta = ModelPasta(
+                0,
+                0,//TODO Pegar id do Usuario
+                nomePasta,
+                descricao,
+                discusao,
+                endereco
+            )
+
+            val pastaViewModel = ViewModelProvider(this)
+                .get(PastaViewModel::class.java)
+            pastaViewModel.insert(pasta)
+
+            //TODO: caso quebrar a aplicacao ao criar, comentar esse esclopo(responsavel por subir
+            // a pasta criada)
+            val gson = Gson()
+            val strPasta: String = gson.toJson(pasta)
+
+            APIsWebClient().criarPasta(strPasta, object : CallbackResponse<ModelPasta> {
+                override fun sucess(response: ModelPasta) {
+
+                    Toast.makeText(applicationContext,"Pasta Criada!",Toast.LENGTH_LONG).show()
+                    finish()
+                }
+
+                override fun error(response: String) {
+                    Toast.makeText(applicationContext,response,Toast.LENGTH_LONG).show()
+                }
+            })
+            // -> colcoar o finish
+        }
+    }
+
+    private fun checarCampos(): Boolean {
+        val nomePasta = etNome_pasta.text.toString()
+        val discusao = etDiscusao.text.toString()
+        val categorias = spCategorias.selectedItem.toString()
+        val descricao = etDescricao.text.toString()
+        val endereco = etEndereco.text.toString()
+
+        if(nomePasta.isBlank() || nomePasta.length < 3){
+            etNome_pasta.requestFocus()
+            etNome_pasta.error = "Valor inválido!"
+            return false
+        }
+        if(discusao.isBlank() || discusao.length < 3){
+            etDiscusao.requestFocus()
+            etDiscusao.error = "Valor inválido!"
+            return false
+        }
+        if(categorias.isBlank()){
+            spCategorias.requestFocus()
+            Toast.makeText(this, "Selecione uma categoria!", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(descricao.isBlank() || descricao.length < 3){
+            etDescricao.requestFocus()
+            etDescricao.error = "Valor inválido!"
+            return false
+        }
+        if(endereco.isBlank() || endereco.length < 3){
+            etEndereco.requestFocus()
+            etEndereco.error = "Valor inválido!"
+            return false
+        }
+        return true
+    }
+}

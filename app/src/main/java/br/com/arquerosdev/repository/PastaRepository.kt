@@ -10,7 +10,7 @@ class PastaRepository (private val pastaDao: PastaDao) {
         return pastaDao.pegarPasta()
     }
 
-    suspend fun insert(modelPasta: List<ModelPasta>) {
+    suspend fun insert(modelPasta: ModelPasta) {
         pastaDao.insert(modelPasta)
     }
 

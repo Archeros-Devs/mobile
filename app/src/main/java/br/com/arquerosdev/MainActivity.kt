@@ -15,5 +15,8 @@ class MainActivity : AppCompatActivity() {
         btListarPastas.setOnClickListener { view ->
             startActivity(Intent(this,PastaListaActivity::class.java))
         }
+        btCriarPasta.setOnClickListener { view ->
+            startActivity(Intent(this, CriarPastaActivity::class.java))
+        }
     }
 }

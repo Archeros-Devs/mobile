@@ -121,4 +121,27 @@ class APIsWebClient {
             }
         })
     }
+
+    fun criarPasta(pasta: String ,callbackResponse: CallbackResponse<ModelPasta>){
+        val call = RetrofitInitializer().apisService().criarPastas(pasta)
+        call.enqueue(object: Callback<JsonObject?> {
+            override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
+
+                if(response!!.code() == 200){
+                    try{
+                        val gson = Gson()
+                        val typeResponse = object : TypeToken<ModelPasta>() {}.type
+                        val jbResponse: ModelPasta = gson.fromJson(response.body(), typeResponse)
+                        callbackResponse.sucess(jbResponse)
+                    }catch (e:Exception){
+                        Log.e("Error",e.toString())
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject?>?, t: Throwable?) {
+                Log.i("teste", t.toString())
+            }
+        })
+    }
 }

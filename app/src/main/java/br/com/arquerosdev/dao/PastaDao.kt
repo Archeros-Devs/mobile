@@ -14,7 +14,7 @@ interface PastaDao {
     fun pegarPasta(): LiveData<List<ModelPasta>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(pasta: List<ModelPasta>)
+    suspend fun insert(pasta: ModelPasta)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserList(listModelPasta: List<ModelPasta>)

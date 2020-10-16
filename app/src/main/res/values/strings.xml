@@ -47,6 +47,8 @@
     <string name="msg_error_endereco">Endereço inválido!</string>
     <string name="cadastro_sucesso">Cadastrado com sucesso!</string>
     <string name="cadastro_erro">Já cadastrado!</string>
+    <string name="adinionar_pasta">Add Pasta</string>
+
 
     <string-array name="categorias_array">
         <item>Selecione uma categoria</item>
