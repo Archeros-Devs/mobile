@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Peruíbe Melhor</string>
     <string name="sobre_nome">Sobrenome</string>
-    <string name="senha">senha</string>
+    <string name="senha">Senha</string>
     <string name="login">login</string>
     <string name="aviso_login">e-mail</string>
     <string name="bt_login">Login</string>
@@ -12,7 +12,7 @@
     <string name="masculino">M</string>
     <string name="feminino">F</string>
     <string name="outros">Outros</string>
-    <string name="genero">Genero:</string>
+    <string name="genero">Gênero:</string>
     <string name="email">Email</string>
     <string name="telefone">Telefone 99 9 9999 9999</string>
     <string name="profissao">Profissão</string>
