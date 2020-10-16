@@ -2,8 +2,8 @@
     <string name="app_name">Peruíbe Melhor</string>
     <string name="sobre_nome">Sobrenome</string>
     <string name="senha">Senha</string>
-    <string name="login">login</string>
-    <string name="aviso_login">e-mail</string>
+    <string name="login">Login</string>
+    <string name="aviso_login">E-mail</string>
     <string name="bt_login">Login</string>
     <string name="bt_cadastro">Novo usuário? Crie sua conta aqui.</string>
     <string name="preenche_cadastro">Preencha seus dados para cadastro</string>
