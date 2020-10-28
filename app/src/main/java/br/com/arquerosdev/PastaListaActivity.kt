@@ -34,8 +34,6 @@ class PastaListaActivity : AppCompatActivity() {
             startActivity(Intent(this, CriarPastaActivity::class.java))
         }
 
-        callPastas()
-
         val pastaViewModel: PastaViewModel = ViewModelProvider(this)
             .get(PastaViewModel::class.java)
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
@@ -48,26 +46,5 @@ class PastaListaActivity : AppCompatActivity() {
         // val it = Intent(this, PastaActivity::class.java)
         // it.putExtra("pasta", pasta)
         // startActivity(it)
-    }
-
-    private fun callPastas(){
-        val pastaViewModel: PastaViewModel = ViewModelProvider(this)
-            .get(PastaViewModel::class.java)
-        APIsWebClient().listPastas(object: CallbackResponse<JsonObject> {
-            override fun sucess(response: JsonObject) {
-
-                val listaPasta = response.getAsJsonArray("pastas")
-
-                val gson = Gson()
-                val typeResponse = object : TypeToken<List<ModelPasta>>() {}.type
-                val listModelPasta: List<ModelPasta> = gson.fromJson(listaPasta, typeResponse)
-                pastaViewModel.inserList(listModelPasta)
-            }
-
-            override fun error(response: String) {
-                Log.e("ERROR", response)
-            }
-
-        })
     }
 }

@@ -112,7 +112,7 @@ class APIsWebClient {
     }
 
     fun listPastas(res: CallbackResponse<JsonObject>){
-        val call = RetrofitInitializer().apisService().listPastas()
+        val call = RetrofitInitializer().apisService().listPastas("Bearer "+Prefs.getString("token"))
         call.enqueue(object: Callback<JsonObject?> {
             override fun onResponse(call: Call<JsonObject?>?,
                                     response: Response<JsonObject?>?) {

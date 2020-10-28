@@ -9,7 +9,7 @@ import br.com.arquerosdev.model.ModelPasta
 
 @Dao
 interface PastaDao {
-    @Query("SELECT * FROM Pasta")
+    @Query("SELECT * FROM Pasta ORDER BY ID DESC")
     fun pegarPasta(): LiveData<List<ModelPasta>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

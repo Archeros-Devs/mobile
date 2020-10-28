@@ -6,14 +6,20 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.model.ModelEscolaridade
+import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.model.ModelProfissao
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.EscolaridadeViewModel
+import br.com.arquerosdev.viewmodel.PastaViewModel
 import br.com.arquerosdev.viewmodel.ProfisaoViewModel
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
 
 
 class SplashActivity : BaseActivity(){
@@ -43,7 +49,7 @@ class SplashActivity : BaseActivity(){
             }
 
             override fun error(response: String) {
-                TODO("Not yet implemented")
+                callEscolaridade()
             }
 
         })
@@ -55,12 +61,35 @@ class SplashActivity : BaseActivity(){
         APIsWebClient().listEscolaridade(object: CallbackResponse<List<ModelEscolaridade>> {
             override fun sucess(response: List<ModelEscolaridade>) {
                 escolaridadeViewModel.insert(response)
+                callPastas()
+            }
+
+            override fun error(response: String) {
+                callPastas()
+            }
+        })
+    }
+
+    private fun callPastas(){
+        val pastaViewModel: PastaViewModel = ViewModelProvider(this)
+            .get(PastaViewModel::class.java)
+        APIsWebClient().listPastas(object: CallbackResponse<JsonObject> {
+            override fun sucess(response: JsonObject) {
+
+                val listaPasta = response.getAsJsonArray("pastas")
+
+                val gson = Gson()
+                val typeResponse = object : TypeToken<List<ModelPasta>>() {}.type
+                val listModelPasta: List<ModelPasta> = gson.fromJson(listaPasta, typeResponse)
+                pastaViewModel.inserList(listModelPasta)
+
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish()
             }
 
             override fun error(response: String) {
-                TODO("Not yet implemented")
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                finish()
             }
         })
     }
