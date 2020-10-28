@@ -231,7 +231,8 @@ class FragCadastroUsuario : Fragment() {
 
         //view.etSenhaConf
         val usuario = ModelUsuario(
-            0,//TODO: Nico gerar automatico no SERVIDOR
+            0,
+            0,
             idProfissao,
             view.etCpf.text.toString(),
             view.etNomeCompleto.text.toString(),

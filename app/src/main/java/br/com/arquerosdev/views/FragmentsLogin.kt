@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.MainActivity
+import br.com.arquerosdev.Prefs
 import br.com.arquerosdev.R
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.service.APIsWebClient
@@ -23,10 +24,15 @@ import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.ProfisaoViewModel
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.frag_cad_usuario.view.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlin.math.roundToInt
 
 
 class FragmentsLogin : Fragment() {
+
+    private var senhaTemp = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_login, container, false)
         view.bt_login.setOnClickListener { btview ->
@@ -58,13 +64,39 @@ class FragmentsLogin : Fragment() {
             if(isConect){
                 val login = JsonObject()
 
+                senhaTemp = view.edSenha.text.toString()
+
                 login.addProperty("email",view.edEmail.text.toString())
-                login.addProperty("senha",view.edSenha.text.toString())
+                login.addProperty("senha",senhaTemp)
 
                 APIsWebClient().loginUsuario(login, object : CallbackResponse<Map<String, Any>> {
                     override fun sucess(response: Map<String, Any>) {
-                        //TODO: Salvar Token para ser usado em outras APIs(salvar na tabela / file / sabe Deus)
-                        Toast.makeText(activity!!,response.get("token").toString(),Toast.LENGTH_LONG).show()
+
+                        Prefs.setString("token", response["token"].toString())
+                        Prefs.setInt("id_usuario", response["id_usuario"].toString().toDouble().roundToInt())
+
+                        val ativo = response["deletado_em"] == null
+
+                        val usuario = ModelUsuario(
+                            0,
+                            response["id_usuario"].toString().toDouble().roundToInt(),
+                            response["id_profissao"].toString().toDouble().roundToInt(),
+                            response["cpf"].toString(),
+                            response["nome"].toString(),
+                            senhaTemp,
+                            response["genero"].toString(),
+                            response["email"].toString(),
+                            response["url_img"].toString(),// TODO: criar funcaio para captura de img via File ou Camera
+                            response["id_escolaridade"].toString().toDouble().roundToInt(),
+                            ativo,
+                            response["tipo_usuario"].toString().toDouble().roundToInt(),
+                            response["telefone"].toString(),
+                            true
+                        )
+                        ViewModelProvider(activity!!)
+                        .get(UsuarioViewModel::class.java).update(usuario)
+
+                        Toast.makeText(activity!!,"Login sucesso!",Toast.LENGTH_LONG).show()
                         val it = Intent(activity!!, MainActivity::class.java)
                         startActivity(it)
                         activity!!.finish()

@@ -1,39 +1,49 @@
 package br.com.arquerosdev.model
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 
 @Entity(tableName = "Pasta")
-data class ModelPasta (
+data class ModelPasta(
+    @Expose
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int,
+
     @ColumnInfo(name = "id_pasta")
-    val idpasta : Int,
+    val idpasta: Int,
 
     @ColumnInfo(name = "id_usuario")
-    val idUsuaro : Int?,
-    
+    val idUsuario: Int,
+
     @ColumnInfo(name = "nome")
     val nome: String?,
 
     @ColumnInfo(name = "descricao")
-    val descricao : String?,
+    val descricao: String?,
+
+    @ColumnInfo(name = "categorias")
+    val categorias: String?,
 
     @ColumnInfo(name = "discussao")
-    val discussao : String?,
+    val discussao: String?,
 
     @ColumnInfo(name = "localizacao")
-    val localizacao : String?
+    val localizacao: String?,
 
-    /*    
-    @ColumnInfo(name = "homologada_em")
-    val criadoEm: Timestamp?,
+    @Nullable
+    @ColumnInfo(name = "criado_em", defaultValue = "NULL")
+    val criadoEm: String?,
 
-    
-    @ColumnInfo(name = "criado_em")
-    val homologadaem: Timestamp?,
+    @Nullable
+    @ColumnInfo(name = "homologada_em", defaultValue = "NULL")
+    val homologadaem: String?,
 
-    @ColumnInfo(name = "deletado_em")
-    val deletadoEm: Timestamp?,*/
+    @Nullable
+    @ColumnInfo(name = "deletado_em", defaultValue = "NULL")
+    val deletadoEm: String?
 
     )

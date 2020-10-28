@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull
 data class ModelUsuario (
     @Expose
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id : Int,
+
     @ColumnInfo(name = "id_usuario")
     val id_usuario : Int,
 

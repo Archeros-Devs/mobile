@@ -28,4 +28,8 @@ class PastaViewModel (application: Application) : AndroidViewModel(application) 
     fun inserList(listModelPasta: List<ModelPasta>) = viewModelScope.launch(Dispatchers.IO) {
         repository.inserList(listModelPasta)
     }
+
+    fun update(modelPasta: ModelPasta) = viewModelScope.launch(Dispatchers.IO) {
+        repository.update(modelPasta)
+    }
 }

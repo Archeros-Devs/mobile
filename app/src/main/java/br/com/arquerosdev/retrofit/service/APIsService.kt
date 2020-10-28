@@ -1,14 +1,10 @@
 package br.com.arquerosdev.retrofit.service
 
 import br.com.arquerosdev.model.ModelEscolaridade
-import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.model.ModelProfissao
 import com.google.gson.JsonObject
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface APIsService {
     @GET("profissoes")
@@ -33,5 +29,5 @@ interface APIsService {
 
     @Headers("Content-Type: application/json")
     @POST("pastas")
-    fun criarPastas(@Body usuario: String): Call<JsonObject>
+    fun criarPastas(@Header("Authorization") token: String?, @Body pastas: String): Call<JsonObject>
 }

@@ -17,4 +17,9 @@ class PastaRepository (private val pastaDao: PastaDao) {
     suspend fun inserList(listModelPasta: List<ModelPasta>) {
         pastaDao.inserList(listModelPasta)
     }
+
+    suspend fun update(mpst: ModelPasta){
+        /*pastaDao.update(mpst.idUsuario, mpst.nome, mpst.discussao, mpst.descricao, mpst.localizacao,
+            mpst.criadoEm, mpst.deletadoEm, mpst.homologadaem, mpst.idpasta)*/
+    }
 }

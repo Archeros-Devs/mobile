@@ -27,6 +27,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:hint="@string/nome_pasta"
+            android:text="Nome da pasta Teste"
             android:inputType="textPersonName" />
 
         <EditText
@@ -36,6 +37,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:hint="@string/discusao"
+            android:text="Discusao da pasta Teste"
             android:inputType="textPersonName" />
 
         <Spinner
@@ -52,6 +54,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:hint="@string/descricao"
+            android:text="Descricao da pasta Teste"
             android:inputType="textPersonName" />
 
         <EditText
@@ -61,6 +64,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:inputType="textPostalAddress"
+            android:text="endereco da pasta Teste"
             android:hint="@string/endereco" />
 
         <RadioGroup

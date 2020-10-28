@@ -1,7 +1,7 @@
 package br.com.arquerosdev.retrofit.service;
 
 import android.util.Log
-import android.widget.Toast
+import br.com.arquerosdev.Prefs
 import br.com.arquerosdev.model.ModelEscolaridade
 import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.model.ModelProfissao
@@ -13,6 +13,12 @@ import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Date
+import java.sql.Timestamp
+import java.sql.Types.TIMESTAMP
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
 class APIsWebClient {
     fun listProfissoes(res: CallbackResponse<List<ModelProfissao>>){
@@ -123,16 +129,28 @@ class APIsWebClient {
     }
 
     fun criarPasta(pasta: String ,callbackResponse: CallbackResponse<ModelPasta>){
-        val call = RetrofitInitializer().apisService().criarPastas(pasta)
+        val call = RetrofitInitializer().apisService().criarPastas("Bearer "+Prefs.getString("token"), pasta)
         call.enqueue(object: Callback<JsonObject?> {
             override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
 
                 if(response!!.code() == 200){
                     try{
-                        val gson = Gson()
-                        val typeResponse = object : TypeToken<ModelPasta>() {}.type
-                        val jbResponse: ModelPasta = gson.fromJson(response.body(), typeResponse)
-                        callbackResponse.sucess(jbResponse)
+                        
+                        val pasta = ModelPasta(
+                            0,
+                            response.body()?.get("id_pasta").toString().toDouble().roundToInt(),
+                            response.body()?.get("id_usuario").toString().toDouble().roundToInt(),
+                            response.body()?.get("nome").toString(),
+                            response.body()?.get("descricao").toString(),
+                            response.body()?.get("categorias").toString(),
+                            response.body()?.get("discussao").toString(),
+                            response.body()?.get("localizacao").toString(),
+                            response.body()?.get("criado_em").toString(),
+                            response.body()?.get("homologada_em").toString(),
+                            response.body()?.get("deletado_em").toString()
+                        )
+
+                        callbackResponse.sucess(pasta)
                     }catch (e:Exception){
                         Log.e("Error",e.toString())
                     }

@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import br.com.arquerosdev.model.ModelPasta
-import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface PastaDao {
@@ -19,4 +18,9 @@ interface PastaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserList(listModelPasta: List<ModelPasta>)
 
+    @Query("UPDATE Pasta SET criado_em =:criadoEm, deletado_em =:deletadoEm, homologada_em=:homologadaem, id_pasta=:idpasta " +
+            "WHERE id_usuario = :idUsuario and nome =:nome and discussao =:discussao and descricao =:descricao and localizacao=:localizacao")
+    suspend fun update(
+        idUsuario: Int, nome: String?, discussao: String?, descricao: String?, localizacao: String?,
+        criadoEm: Long?, deletadoEm: Long?, homologadaem: Long?, idpasta: Int)
 }
