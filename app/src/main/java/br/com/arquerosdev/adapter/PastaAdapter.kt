@@ -17,15 +17,11 @@ class PastaAdapter(
     class PastaViewHolder(view: View): RecyclerView.ViewHolder(view){
         val cardNome: TextView
         val cardDiscusao: TextView
-        val cardDescricao: TextView
-        val cardLocalizacao: TextView
         val cardProgress: ProgressBar
 
         init {
             cardNome = view.findViewById(R.id.cardNome)
             cardDiscusao = view.findViewById(R.id.cardDiscusao)
-            cardDescricao = view.findViewById(R.id.cardDescricao)
-            cardLocalizacao = view.findViewById(R.id.cardLocalizacao)
             cardProgress = view.findViewById(R.id.cardProgress)
         }
     }
@@ -45,8 +41,6 @@ class PastaAdapter(
 
         holder.cardNome.text = pasta.nome
         holder.cardDiscusao.text = pasta.discussao
-        holder.cardDescricao.text = pasta.descricao
-        holder.cardLocalizacao.text = pasta.localizacao
         holder.cardProgress.visibility
 
         holder.itemView.setOnClickListener{onClick(pasta)}

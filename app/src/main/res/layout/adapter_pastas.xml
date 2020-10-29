@@ -4,54 +4,57 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_disciplinas"
-    android:layout_margin="6dp"
+    android:layout_margin="5dp"
     app:cardElevation="3dp"
-    app:cardCornerRadius="2dp"
-    android:foreground="?attr/selectableItemBackground">
+    app:cardCornerRadius="16dp"
+    android:foreground="@drawable/round_border_pastas">
 
     <!-- TODO: Melhorar os graficos do cardView da pastas -->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/cardNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="70dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textDiscusao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardNome"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="70dp"
+            android:textColor="@android:color/black"
+            android:text="Discusão"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/cardDiscusao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardNome"
-            android:layout_margin="10dp"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/cardDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cardDiscusao"
-            android:layout_margin="10dp"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/cardLocalizacao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/textDiscusao"
+            android:layout_marginStart="75dp"
             android:textSize="16sp" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardDescricao">
+            android:padding="6dp">
+            <ImageView
+                android:id="@+id/cardImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_folder"/>
 
             <ProgressBar
                 android:id="@+id/cardProgress"
