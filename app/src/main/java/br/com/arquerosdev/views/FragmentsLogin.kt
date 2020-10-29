@@ -40,6 +40,8 @@ class FragmentsLogin : Fragment() {
         }
 
         view.bt_cadastro.setOnClickListener { view ->
+
+            //TODO: Fazer checagem offline para Login
             if(verifyAvailableNetwork(activity!!)){
                 val frag = FragCadastroUsuario()
                 activity!!.supportFragmentManager.beginTransaction()

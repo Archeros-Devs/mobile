@@ -21,38 +21,40 @@ import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 class APIsWebClient {
-    fun listProfissoes(res: CallbackResponse<List<ModelProfissao>>){
+    fun listProfissoes(callbackResponse: CallbackResponse<List<ModelProfissao>>){
         // Lista
         val call = RetrofitInitializer().apisService().listProfissao()
         call.enqueue(object: Callback<List<ModelProfissao>?> {
             override fun onResponse(call: Call<List<ModelProfissao>?>?,
                                     response: Response<List<ModelProfissao>?>?) {
                 response?.body()?.let {
-                    res.sucess(it)
+                    callbackResponse.sucess(it)
                 }
             }
 
             override fun onFailure(call: Call<List<ModelProfissao>?>?,
                                    t: Throwable?) {
-                Log.e("onFailure error", "error "+t.toString())
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
             }
         })
     }
 
-    fun listEscolaridade(res: CallbackResponse<List<ModelEscolaridade>>){
+    fun listEscolaridade(callbackResponse: CallbackResponse<List<ModelEscolaridade>>){
         // Lista
         val call = RetrofitInitializer().apisService().listEscolaridade()
         call.enqueue(object: Callback<List<ModelEscolaridade>?> {
             override fun onResponse(call: Call<List<ModelEscolaridade>?>?,
                                     response: Response<List<ModelEscolaridade>?>?) {
                 response?.body()?.let {
-                    res.sucess(it)
+                    callbackResponse.sucess(it)
                 }
             }
 
             override fun onFailure(call: Call<List<ModelEscolaridade>?>?,
                                    t: Throwable?) {
-                Log.e("onFailure error", "error "+t.toString())
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
             }
         })
     }
@@ -71,7 +73,7 @@ class APIsWebClient {
                         val gson = Gson()
                         resUsuario = gson.fromJson(response.body(), ModelUsuario::class.java)
                     }catch (e:Exception){
-                        Log.e("Error",e.toString())
+                        Log.e("onFailure",e.toString())
                         callbackResponse.error("Já cadastrado!")
                     }
                     callbackResponse.sucess(resUsuario!!)
@@ -81,7 +83,8 @@ class APIsWebClient {
             }
 
             override fun onFailure(call: Call<String?>?, t: Throwable?) {
-                Log.i("teste", t.toString())
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
             }
         })
     }
@@ -98,7 +101,7 @@ class APIsWebClient {
                         val jbResponse: Map<String, Any> = gson.fromJson(response.body(), typeResponse)
                         callbackResponse.sucess(jbResponse)
                     }catch (e:Exception){
-                        Log.e("Error",e.toString())
+                        Log.e("onFailure",e.toString())
                     }
                 }else{
                     callbackResponse.error("Login inválido!")//gson.toJson(response.errorBody())
@@ -106,24 +109,26 @@ class APIsWebClient {
             }
 
             override fun onFailure(call: Call<String?>?, t: Throwable?) {
-                Log.i("teste", t.toString())
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
             }
         })
     }
 
-    fun listPastas(res: CallbackResponse<JsonObject>){
+    fun listPastas(callbackResponse: CallbackResponse<JsonObject>){
         val call = RetrofitInitializer().apisService().listPastas("Bearer "+Prefs.getString("token"))
         call.enqueue(object: Callback<JsonObject?> {
             override fun onResponse(call: Call<JsonObject?>?,
                                     response: Response<JsonObject?>?) {
                 response?.body()?.let {
-                    res.sucess(it)
+                    callbackResponse.sucess(it)
                 }
             }
 
             override fun onFailure(call: Call<JsonObject?>?,
                                    t: Throwable?) {
-                Log.e("onFailure error", "error "+t.toString())
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
             }
         })
     }
@@ -152,13 +157,15 @@ class APIsWebClient {
 
                         callbackResponse.sucess(pasta)
                     }catch (e:Exception){
-                        Log.e("Error",e.toString())
+                        Log.e("onFailure",e.toString())
+                        callbackResponse.error(e.toString())
                     }
                 }
             }
 
             override fun onFailure(call: Call<JsonObject?>?, t: Throwable?) {
-                Log.i("teste", t.toString())
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
             }
         })
     }

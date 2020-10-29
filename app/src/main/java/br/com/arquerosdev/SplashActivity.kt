@@ -49,6 +49,7 @@ class SplashActivity : BaseActivity(){
             }
 
             override fun error(response: String) {
+                Toast.makeText(this@SplashActivity,"Sem conexão com a Internet!",Toast.LENGTH_LONG).show()
                 callEscolaridade()
             }
 
@@ -65,33 +66,42 @@ class SplashActivity : BaseActivity(){
             }
 
             override fun error(response: String) {
+                Toast.makeText(this@SplashActivity,"Sem conexão com a Internet!",Toast.LENGTH_LONG).show()
                 callPastas()
             }
         })
     }
 
     private fun callPastas(){
-        val pastaViewModel: PastaViewModel = ViewModelProvider(this)
-            .get(PastaViewModel::class.java)
-        APIsWebClient().listPastas(object: CallbackResponse<JsonObject> {
-            override fun sucess(response: JsonObject) {
+         if(Prefs.getString("token").isNullOrEmpty()){
+            Prefs.setBoolean("onSync",true)
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            finish()
+        }else{
+            val pastaViewModel: PastaViewModel = ViewModelProvider(this)
+                .get(PastaViewModel::class.java)
+            APIsWebClient().listPastas(object: CallbackResponse<JsonObject> {
+                override fun sucess(response: JsonObject) {
 
-                val listaPasta = response.getAsJsonArray("pastas")
+                    val listaPasta = response.getAsJsonArray("pastas")
 
-                val gson = Gson()
-                val typeResponse = object : TypeToken<List<ModelPasta>>() {}.type
-                val listModelPasta: List<ModelPasta> = gson.fromJson(listaPasta, typeResponse)
-                pastaViewModel.inserList(listModelPasta)
+                    val gson = Gson()
+                    val typeResponse = object : TypeToken<List<ModelPasta>>() {}.type
+                    val listModelPasta: List<ModelPasta> = gson.fromJson(listaPasta, typeResponse)
+                    pastaViewModel.inserList(listModelPasta)
 
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                finish()
-            }
+                    //TODO: Tornar funcoes repitidas em uma só
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    finish()
+                }
 
-            override fun error(response: String) {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                finish()
-            }
-        })
+                override fun error(response: String) {
+                    Toast.makeText(this@SplashActivity,"Falha ao baixar as pastas!",Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    finish()
+                }
+            })
+        }
     }
 
     //TODO: fazer essa funcao publica para ser utlilizada em varios locais
