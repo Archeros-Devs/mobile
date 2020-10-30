@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".PastaChatActivity"></activity>
+        <activity android:name=".PastaPerfilActivity" />
         <activity android:name=".PastaListaActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
