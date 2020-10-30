@@ -2,6 +2,7 @@ package br.com.arquerosdev.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Estudo")
@@ -11,22 +12,23 @@ data class ModelEstudo (
     val idMessagem: Int,
 
     @ColumnInfo(name = "id_usuario")
-    val idUsuario: Int?,
+    val idUsuario: Int,
 
     @ColumnInfo(name = "id_pasta" )
-    val idPasta : Int?,
+    val idPasta : Int,
 
-    
     @ColumnInfo(name = "tipo")
-    val tipo: Int?,
+    val tipo: Int,
 
-    
     @ColumnInfo(name = "menssagem")
-    val menssagem: String?
+    val menssagem: String,
 
-    /*    @ColumnInfo(name = "criado_em")
-    val criadoEm: Timestamp?,
+    @ColumnInfo(name = "criado_em")
+    val criadoEm: String,
 
     @ColumnInfo(name = "deletado_em")
-    val deletadoEm: Timestamp?,*/
+    val deletadoEm: String,
+
+    @ColumnInfo(name = "content")
+    val content: String
 )
