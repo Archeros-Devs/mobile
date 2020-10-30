@@ -1,13 +1,16 @@
 package br.com.arquerosdev.model
 
+import android.os.Parcelable
 import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "Pasta")
-data class ModelPasta(
+data class ModelPasta (
     @Expose
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -46,4 +49,4 @@ data class ModelPasta(
     @ColumnInfo(name = "deletado_em", defaultValue = "NULL")
     val deletadoEm: String?
 
-    )
+    ): Parcelable
