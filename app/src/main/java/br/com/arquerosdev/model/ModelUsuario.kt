@@ -6,10 +6,8 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import org.jetbrains.annotations.NotNull
 
-@Entity(tableName = "Usuario")
+@Entity(tableName = "Usuario", primaryKeys = ["id","id_usuario"])
 data class ModelUsuario (
-    @Expose
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id : Int,
 

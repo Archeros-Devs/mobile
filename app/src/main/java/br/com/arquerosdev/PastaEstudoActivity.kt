@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import br.com.arquerosdev.model.ModelPasta
 
-class PastaChatActivity : AppCompatActivity() {
+class PastaEstudoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pasta_chat)
+        setContentView(R.layout.activity_pasta_estudo)
 
         val pasta = intent.getParcelableExtra<ModelPasta>("pasta")
 

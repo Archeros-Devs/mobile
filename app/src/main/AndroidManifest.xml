@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PastaChatActivity"></activity>
+        <activity android:name=".PastaEstudoActivity"></activity>
         <activity android:name=".PastaPerfilActivity" />
         <activity android:name=".PastaListaActivity" />
         <activity android:name=".SplashActivity">

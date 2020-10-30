@@ -4,8 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.model.ModelPasta
@@ -32,7 +30,7 @@ class PastaPerfilActivity : AppCompatActivity() {
         cardlocalizacao.text = pasta?.localizacao.toString()
 
         button.setOnClickListener {
-            val it = Intent(this@PastaPerfilActivity, PastaChatActivity::class.java)
+            val it = Intent(this@PastaPerfilActivity, PastaEstudoActivity::class.java)
             it.putExtra("pasta", pasta as Parcelable)
             startActivity(it)
         }

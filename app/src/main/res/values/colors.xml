@@ -10,4 +10,6 @@
     <color name="black">#000</color>
     <color name="white">#fff</color>
     <color name="gray">#2d2d2d</color>
+    <color name="channel_background">#525252</color>
+    <color name="toolbar_background">#1F1F1F</color>
 </resources>

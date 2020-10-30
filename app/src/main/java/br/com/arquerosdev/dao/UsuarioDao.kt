@@ -6,7 +6,7 @@ import br.com.arquerosdev.model.ModelUsuario
 
 @Dao
 interface UsuarioDao {
-    @Query("SELECT * FROM Usuario WHERE ativo = '1' limit 1")
+    @Query("SELECT * FROM Usuario limit 1") //WHERE ativo = '1'
     fun getAsUsuarioLogado(): LiveData<ModelUsuario>
 
     @Query("SELECT * FROM Usuario WHERE email = :email and  senha = :senha limit 1")

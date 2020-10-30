@@ -96,7 +96,7 @@ class FragmentsLogin : Fragment() {
                             true
                         )
                         ViewModelProvider(activity!!)
-                        .get(UsuarioViewModel::class.java).update(usuario)
+                        .get(UsuarioViewModel::class.java).insert(usuario)
 
                         Toast.makeText(activity!!,"Login sucesso!",Toast.LENGTH_LONG).show()
                         val it = Intent(activity!!, MainActivity::class.java)
