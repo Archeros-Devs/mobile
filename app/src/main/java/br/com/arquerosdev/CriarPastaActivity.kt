@@ -1,6 +1,5 @@
 package br.com.arquerosdev
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -11,9 +10,6 @@ import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.PastaViewModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_nova_pasta.*
-import java.sql.Date
-import java.time.LocalDateTime
-import java.util.*
 
 class CriarPastaActivity : AppCompatActivity() {
 
@@ -29,7 +25,6 @@ class CriarPastaActivity : AppCompatActivity() {
     }
 
     private fun salvarNovaPasta(){
-
         if(checarCampos()){
             val nomePasta = etNome_pasta.text.toString()
             val discusao = etDiscusao.text.toString()

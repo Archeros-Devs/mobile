@@ -2,10 +2,7 @@ package br.com.arquerosdev.retrofit.service;
 
 import android.util.Log
 import br.com.arquerosdev.Prefs
-import br.com.arquerosdev.model.ModelEscolaridade
-import br.com.arquerosdev.model.ModelPasta
-import br.com.arquerosdev.model.ModelProfissao
-import br.com.arquerosdev.model.ModelUsuario
+import br.com.arquerosdev.model.*
 import br.com.arquerosdev.retrofit.RetrofitInitializer
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -156,6 +153,43 @@ class APIsWebClient {
                         )
 
                         callbackResponse.sucess(pasta)
+                    }catch (e:Exception){
+                        Log.e("onFailure",e.toString())
+                        callbackResponse.error(e.toString())
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject?>?, t: Throwable?) {
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
+            }
+        })
+    }
+
+    fun criarEstudo(estudo: String ,callbackResponse: CallbackResponse<ModelEstudo>){
+        val call = RetrofitInitializer().apisService().criarEstudo("Bearer "+Prefs.getString("token"), estudo)
+        call.enqueue(object: Callback<JsonObject?> {
+            override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
+
+                if(response!!.code() == 200){
+                    try{
+/*
+                        val pasta = ModelEstudo(
+                            0,
+                            response.body()?.get("id_pasta").toString().toDouble().roundToInt(),
+                            response.body()?.get("id_usuario").toString().toDouble().roundToInt(),
+                            response.body()?.get("nome").toString(),
+                            response.body()?.get("descricao").toString(),
+                            response.body()?.get("categorias").toString(),
+                            response.body()?.get("discussao").toString(),
+                            response.body()?.get("localizacao").toString(),
+                            response.body()?.get("criado_em").toString(),
+                            response.body()?.get("homologada_em").toString(),
+                            response.body()?.get("deletado_em").toString()
+                        )
+
+                        callbackResponse.sucess(pasta)*/
                     }catch (e:Exception){
                         Log.e("onFailure",e.toString())
                         callbackResponse.error(e.toString())

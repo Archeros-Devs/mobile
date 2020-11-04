@@ -16,15 +16,26 @@ import kotlinx.coroutines.launch
 class EstudoViewModel (application: Application) : AndroidViewModel(application) {
 
     private val repository: EstudoRepository
-    val modelArquivo: LiveData<List<ModelEstudo>>
 
     init {
         val estudoDao = AppDatabase.getDatabase(application).EstudoDao()
         repository = EstudoRepository (estudoDao)
-        modelArquivo = repository.pegarEstudo()
+
+    }
+
+    fun getEstudoChat(id_pasta: Int): LiveData<List<ModelEstudo>>{
+        return repository.pegarEstudo(id_pasta)
+    }
+
+    fun insertMsg(modelEstudo: ModelEstudo) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertMsg(modelEstudo)
     }
 
     fun insert(modelEstudo: List<ModelEstudo>) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(modelEstudo)
+    }
+
+    fun update(response: ModelEstudo) {
+
     }
 }

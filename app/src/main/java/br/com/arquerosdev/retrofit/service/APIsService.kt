@@ -30,4 +30,8 @@ interface APIsService {
     @Headers("Content-Type: application/json")
     @POST("pastas")
     fun criarPastas(@Header("Authorization") token: String?, @Body pastas: String): Call<JsonObject>
+
+    @Headers("Content-Type: application/json")
+    @POST("estudos")
+    fun criarEstudo(@Header("Authorization") token: String?, @Body pastas: String): Call<JsonObject>
 }
