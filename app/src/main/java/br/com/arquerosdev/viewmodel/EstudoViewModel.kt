@@ -35,7 +35,11 @@ class EstudoViewModel (application: Application) : AndroidViewModel(application)
         repository.insert(modelEstudo)
     }
 
-    fun update(response: ModelEstudo) {
+    fun update(modelEstudo: ModelEstudo) = viewModelScope.launch(Dispatchers.IO){
+        repository.update(modelEstudo)
+    }
 
+    fun getUltimoMSG(id_usuario: Int, id_pasta: Int, msg: String): ModelEstudo{
+        return repository.getUltimoMSG(id_usuario, id_pasta, msg)
     }
 }

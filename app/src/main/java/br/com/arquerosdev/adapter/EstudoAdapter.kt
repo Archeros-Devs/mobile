@@ -16,14 +16,10 @@ class EstudoAdapter(
     val onClick: (ModelEstudo) -> Unit
 ): RecyclerView.Adapter<EstudoAdapter.EstudoViewHolder>()    {
     class EstudoViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val cardNome: TextView
-        //val cardDiscusao: TextView
-        //val cardProgress: ProgressBar
+        val textDiscusao: TextView
 
         init {
-            cardNome = view.findViewById(R.id.cardNome)
-            //cardDiscusao = view.findViewById(R.id.cardDiscusao)
-            //cardProgress = view.findViewById(R.id.cardProgress)
+            textDiscusao = view.findViewById(R.id.textDiscusao)
         }
     }
 
@@ -38,9 +34,9 @@ class EstudoAdapter(
     }
 
     override fun onBindViewHolder(holder: EstudoViewHolder, position: Int) {
-        val texto = this.listasEstudo[position]
+        val estudoModel = this.listasEstudo[position]
 
-        holder.cardNome.text = texto.menssagem
+        holder.textDiscusao.text = estudoModel.mensagem
 
         //holder.itemView.setOnClickListener{onClick(pasta)}
 

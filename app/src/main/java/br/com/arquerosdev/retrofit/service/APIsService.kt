@@ -1,9 +1,14 @@
 package br.com.arquerosdev.retrofit.service
 
+import android.util.Log
+import br.com.arquerosdev.Prefs
 import br.com.arquerosdev.model.ModelEscolaridade
 import br.com.arquerosdev.model.ModelProfissao
+import br.com.arquerosdev.retrofit.RetrofitInitializer
 import com.google.gson.JsonObject
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.http.*
 
 interface APIsService {
@@ -31,7 +36,10 @@ interface APIsService {
     @POST("pastas")
     fun criarPastas(@Header("Authorization") token: String?, @Body pastas: String): Call<JsonObject>
 
+    @GET("pastas/{idPasta}/estudos")
+    fun listEstudos(@Header("Authorization") token: String?, @Path("idPasta") idPasta: String?): Call<JsonObject>
+
     @Headers("Content-Type: application/json")
-    @POST("estudos")
-    fun criarEstudo(@Header("Authorization") token: String?, @Body pastas: String): Call<JsonObject>
+    @POST("pastas/{idPasta}/estudos")
+    fun criarEstudo(@Header("Authorization") token: String?, @Body estudo: String, @Path("idPasta") idPasta: String?): Call<JsonObject>
 }

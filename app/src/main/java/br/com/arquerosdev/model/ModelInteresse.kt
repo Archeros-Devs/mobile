@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class ModelInteresse (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_usuario")
-    val idUsuaro : Int,
+    val id_usuario : Int,
     
     @ColumnInfo(name = "id_categoria")
-    val categoria : Int?
+    val id_categoria : Int?
     
     )

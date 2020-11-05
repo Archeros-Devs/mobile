@@ -30,45 +30,47 @@ class PastaEstudoActivity : AppCompatActivity() {
         val estudoViewModel: EstudoViewModel = ViewModelProvider(this)
             .get(EstudoViewModel::class.java)
 
-        bt_send.setOnClickListener { view ->
+        recycleEstudo?.layoutManager = LinearLayoutManager(this)
+        recycleEstudo?.itemAnimator = DefaultItemAnimator()
+        recycleEstudo?.setHasFixedSize(true)
 
+        estudoViewModel.getEstudoChat(pasta!!.id_pasta).observe(this, Observer { listaEstudo ->
+            recycleEstudo?.adapter = EstudoAdapter(listaEstudo) {}
+        })
+
+        bt_send.setOnClickListener { view ->
             val msg = ModelEstudo(
                 0,
                 0,
                 Prefs.getInt("id_usuario"),
-                pasta!!.idpasta,
+                pasta.id_pasta,
                 0,
                 et_msg.text.toString(),
                 "",
                 ""
             )
-
-            val gson = Gson()
-            val strMSG: String = gson.toJson(msg)
-
-            APIsWebClient().criarEstudo(strMSG, object : CallbackResponse<ModelEstudo> {
-                override fun sucess(response: ModelEstudo) {
-
-                    ViewModelProvider(this@PastaEstudoActivity)
-                        .get(estudoViewModel::class.java).update(response)
-
-                }
-
-                override fun error(response: String) {
-                    Toast.makeText(this@PastaEstudoActivity,response, Toast.LENGTH_LONG).show()
-                }
-            })
-
             estudoViewModel.insertMsg(msg)
-            et_msg.text.toString()
+            Thread {
+                val msgNova = estudoViewModel.getUltimoMSG(Prefs.getInt("id_usuario"),pasta.id_pasta,et_msg.text.toString())
+                runOnUiThread {
+                    val gsonEstudo = Gson()
+                    val strMSG: String = gsonEstudo.toJson(msgNova)
+
+                    APIsWebClient().criarEstudo(strMSG, pasta.id_pasta, object : CallbackResponse<ModelEstudo> {
+                        override fun sucess(response: ModelEstudo) {
+                            ViewModelProvider(this@PastaEstudoActivity)
+                                .get(estudoViewModel::class.java).update(response)
+                        }
+
+                        override fun error(response: String) {
+                            Toast.makeText(this@PastaEstudoActivity,response, Toast.LENGTH_LONG).show()
+                        }
+                    })
+
+                    et_msg.setText("")
+                    et_msg.clearFocus()
+                }
+            }.start()
         }
-
-        recyclePastas?.layoutManager = LinearLayoutManager(this)
-        recyclePastas?.itemAnimator = DefaultItemAnimator()
-        recyclePastas?.setHasFixedSize(true)
-
-        estudoViewModel.getEstudoChat(pasta!!.idpasta).observe(this, Observer { listaEstudo ->
-            recycleEstudo?.adapter = EstudoAdapter(listaEstudo) {}
-        })
     }
 }

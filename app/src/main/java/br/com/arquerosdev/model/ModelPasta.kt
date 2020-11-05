@@ -7,20 +7,20 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 @Entity(tableName = "Pasta")
 data class ModelPasta (
-    @Expose
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int,
 
     @ColumnInfo(name = "id_pasta")
-    val idpasta: Int,
+    val id_pasta: Int,
 
     @ColumnInfo(name = "id_usuario")
-    val idUsuario: Int,
+    val id_usuario: Int,
 
     @ColumnInfo(name = "nome")
     val nome: String?,
@@ -39,14 +39,14 @@ data class ModelPasta (
 
     @Nullable
     @ColumnInfo(name = "criado_em", defaultValue = "NULL")
-    val criadoEm: String?,
+    val criado_em: String?,
 
     @Nullable
     @ColumnInfo(name = "homologada_em", defaultValue = "NULL")
-    val homologadaem: String?,
+    val homologada_em: String?,
 
     @Nullable
     @ColumnInfo(name = "deletado_em", defaultValue = "NULL")
-    val deletadoEm: String?
+    val deletado_em: String?
 
     ): Parcelable

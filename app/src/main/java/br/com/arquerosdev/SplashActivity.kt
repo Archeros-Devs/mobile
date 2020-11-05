@@ -88,6 +88,7 @@ class SplashActivity : BaseActivity(){
                     val gson = Gson()
                     val typeResponse = object : TypeToken<List<ModelPasta>>() {}.type
                     val listModelPasta: List<ModelPasta> = gson.fromJson(listaPasta, typeResponse)
+
                     pastaViewModel.inserList(listModelPasta)
 
                     //TODO: Tornar funcoes repitidas em uma só

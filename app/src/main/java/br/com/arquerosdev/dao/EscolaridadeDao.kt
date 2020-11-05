@@ -18,7 +18,7 @@ interface EscolaridadeDao {
     @Query("SELECT DISTINCT escolaridade FROM Escolaridade")
     fun pegarNomeEscolaridade(): LiveData<List<String>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(pasta: List<ModelEscolaridade>)
 
 }

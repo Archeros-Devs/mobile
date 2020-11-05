@@ -12,7 +12,7 @@ data class ModelEndereco (
     var id_Endereco: Int,
 
     @ColumnInfo(name = "id_usuario")
-    var id_Usuario: Int,
+    var id_usuario: Int,
 
     @ColumnInfo(name = "cidade")
         var cidade: String?,

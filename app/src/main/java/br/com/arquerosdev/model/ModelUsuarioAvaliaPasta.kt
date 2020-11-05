@@ -8,21 +8,18 @@ import androidx.room.PrimaryKey
 data class ModelUsuarioAvaliaPasta (
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id_usuario")
-    val idUsuario : Int,
+    val id_usuario : Int,
 
     @ColumnInfo(name = "id_pasta")
-    val idpasta : Int?,
+    val id_pasta : Int?,
 
     @ColumnInfo(name = "avaliacao")
-    var avaliacao: Int?
+    var avaliacao: Int?,
 
-     /*    
     @ColumnInfo(name = "atualizado_em")
-    val atualizadoEm: Timestamp?,
-
+    val atualizado_em: String?,
     
     @ColumnInfo(name = "criado_em")
-    val criadoEm: Timestamp?*/
-
+    val criado_em: String?
 )
 

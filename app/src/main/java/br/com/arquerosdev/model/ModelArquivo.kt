@@ -8,13 +8,13 @@ import androidx.room.PrimaryKey
 data class ModelArquivo (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_arquivo")
-    val idArquivo : Int,
+    val id_arquivo : Int,
     
     @ColumnInfo(name = "id_usuario")
-    val idUsuario : Int?,
+    val id_usuario : Int?,
 
     @ColumnInfo(name = "id_pasta")
-    val idPasta : Int?,
+    val id_pasta : Int?,
 
     @ColumnInfo(name = "url")
     val url : String?,

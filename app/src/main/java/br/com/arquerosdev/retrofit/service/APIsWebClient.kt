@@ -7,14 +7,10 @@ import br.com.arquerosdev.retrofit.RetrofitInitializer
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.activity_pasta_estudo.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Date
-import java.sql.Timestamp
-import java.sql.Types.TIMESTAMP
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 class APIsWebClient {
@@ -67,8 +63,8 @@ class APIsWebClient {
                 if(response!!.code() == 200){
                     var resUsuario:ModelUsuario? = null
                     try{
-                        val gson = Gson()
-                        resUsuario = gson.fromJson(response.body(), ModelUsuario::class.java)
+                        val gsonUsuario = Gson()
+                        resUsuario = gsonUsuario.fromJson(response.body(), ModelUsuario::class.java)
                     }catch (e:Exception){
                         Log.e("onFailure",e.toString())
                         callbackResponse.error("Já cadastrado!")
@@ -130,6 +126,24 @@ class APIsWebClient {
         })
     }
 
+    fun listEstudo(idPasta: String, callbackResponse: CallbackResponse<JsonObject>){
+        val call = RetrofitInitializer().apisService().listEstudos("Bearer "+Prefs.getString("token"), idPasta)
+        call.enqueue(object: Callback<JsonObject?> {
+            override fun onResponse(call: Call<JsonObject?>?,
+                                    response: Response<JsonObject?>?) {
+                response?.body()?.let {
+                    callbackResponse.sucess(it)
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject?>?,
+                                   t: Throwable?) {
+                Log.e("onFailure", t.toString())
+                callbackResponse.error(t.toString())
+            }
+        })
+    }
+
     fun criarPasta(pasta: String ,callbackResponse: CallbackResponse<ModelPasta>){
         val call = RetrofitInitializer().apisService().criarPastas("Bearer "+Prefs.getString("token"), pasta)
         call.enqueue(object: Callback<JsonObject?> {
@@ -167,29 +181,26 @@ class APIsWebClient {
         })
     }
 
-    fun criarEstudo(estudo: String ,callbackResponse: CallbackResponse<ModelEstudo>){
-        val call = RetrofitInitializer().apisService().criarEstudo("Bearer "+Prefs.getString("token"), estudo)
+    fun criarEstudo(estudo: String , idPasta: Int,callbackResponse: CallbackResponse<ModelEstudo>){
+        val call = RetrofitInitializer().apisService().criarEstudo("Bearer "+Prefs.getString("token"), estudo, idPasta.toString())
         call.enqueue(object: Callback<JsonObject?> {
             override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
 
                 if(response!!.code() == 200){
                     try{
-/*
+
                         val pasta = ModelEstudo(
-                            0,
-                            response.body()?.get("id_pasta").toString().toDouble().roundToInt(),
+                            response.body()?.get("id_origem").toString().toDouble().roundToInt(),
+                            response.body()?.get("id_mensagem").toString().toDouble().roundToInt(),
                             response.body()?.get("id_usuario").toString().toDouble().roundToInt(),
-                            response.body()?.get("nome").toString(),
-                            response.body()?.get("descricao").toString(),
-                            response.body()?.get("categorias").toString(),
-                            response.body()?.get("discussao").toString(),
-                            response.body()?.get("localizacao").toString(),
+                            response.body()?.get("id_pasta").toString().toDouble().roundToInt(),
+                            response.body()?.get("tipo").toString().toDouble().roundToInt(),
+                            response.body()?.get("mensagem").toString(),
                             response.body()?.get("criado_em").toString(),
-                            response.body()?.get("homologada_em").toString(),
-                            response.body()?.get("deletado_em").toString()
+                            ""
                         )
 
-                        callbackResponse.sucess(pasta)*/
+                        callbackResponse.sucess(pasta)
                     }catch (e:Exception){
                         Log.e("onFailure",e.toString())
                         callbackResponse.error(e.toString())

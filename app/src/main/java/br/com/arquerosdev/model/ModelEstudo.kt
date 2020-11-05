@@ -11,31 +11,30 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "Estudo")
 data class ModelEstudo (
-    @Expose
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int,
+    @ColumnInfo(name = "id_origem")
+    val id_origem: Int,
 
-    @ColumnInfo(name = "id_messagem")
-    val idMessagem: Int,
+    @ColumnInfo(name = "id_mensagem")
+    val id_mensagem: Int,
 
     @ColumnInfo(name = "id_usuario")
-    val idUsuario: Int,
+    val id_usuario: Int,
 
-    @ColumnInfo(name = "id_pasta" )
-    val idPasta : Int,
+    @ColumnInfo(name = "id_pasta")
+    val id_pasta : Int,
 
     @ColumnInfo(name = "tipo")
     val tipo: Int,
 
-    @ColumnInfo(name = "menssagem")
-    val menssagem: String,
+    @ColumnInfo(name = "mensagem")
+    val mensagem: String,
 
     @Nullable
     @ColumnInfo(name = "criado_em", defaultValue = "NULL")
-    val criadoEm: String?,
+    val criado_em: String?,
 
     @Nullable
     @ColumnInfo(name = "deletado_em", defaultValue = "NULL")
-    val deletadoEm: String?
+    val deletado_em: String?
 ): Parcelable

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class ModelEscolaridade (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_escolaridade")
-    val idEscolaridade : Int,
+    val id_escolaridade : Int,
     
     @ColumnInfo(name = "escolaridade")
     val escolaridade : String?

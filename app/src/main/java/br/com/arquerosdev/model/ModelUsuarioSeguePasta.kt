@@ -14,14 +14,12 @@ data class ModelUsuarioSeguePasta(
     val idUsuario : Int?,
     
     @ColumnInfo(name = "ativo")
-    val ativo: Int?
+    val ativo: Int?,
 
-    /*    
     @ColumnInfo(name = "atualizado_em")
-    val atualizadoEm: Timestamp?,
+    val atualizadoEm: String?,
 
-    
     @ColumnInfo(name = "criado_em")
-    val criadoEm: Timestamp?*/
+    val criadoEm: String?
     
     )

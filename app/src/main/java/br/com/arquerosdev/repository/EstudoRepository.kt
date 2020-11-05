@@ -21,4 +21,12 @@ class EstudoRepository (private val estudoDao: EstudoDao) {
     suspend fun insertMsg(modelEstudo: ModelEstudo) {
         estudoDao.insertMsg(modelEstudo)
     }
+
+    suspend fun update(modelEstudo: ModelEstudo) {
+        estudoDao.update(modelEstudo.id_origem, modelEstudo.id_mensagem, modelEstudo.criado_em)
+    }
+
+    fun getUltimoMSG(idUsuario: Int, idPasta: Int, msg: String): ModelEstudo{
+        return estudoDao.getUltimoMSG(idUsuario,idPasta,msg)
+    }
 }
