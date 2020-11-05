@@ -25,6 +25,8 @@ class PastaPerfilActivity : AppCompatActivity() {
             this.textNomeUsuario.text = usuario.nome
         })
 
+        textNomePasta.text= pasta?.nome.toString()
+        textCriadoEm.text = pasta?.criado_em.toString()
         cardDiscusao.text = pasta?.discussao.toString()
         cardDescricao.text = pasta?.descricao.toString()
         cardlocalizacao.text = pasta?.localizacao.toString()
