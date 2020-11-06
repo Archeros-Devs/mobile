@@ -7,10 +7,33 @@
     tools:context=".PastaPerfilActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/colorLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textNomePasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorLogin"
+        android:layout_marginTop="48dp"
+        android:background="#B50099FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,26 +41,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout3">
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/ic_person_pin" />
 
             <TextView
                 android:id="@+id/textNomeUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="3dp"
                 android:textColor="@android:color/white"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textCriadoEm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:hint=""/>
+
         </LinearLayout>
 
     </FrameLayout>
@@ -46,7 +82,7 @@
         android:id="@+id/textDiscussao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:text="@string/discusao"
         android:textColor="@color/black"
@@ -59,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textDiscusao"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,12 +103,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDiscussao" />
 
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textDescricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/descricao"
         android:textColor="@color/black"
@@ -85,19 +120,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cardDiscusao"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textDescricao" />
 
     <TextView
         android:id="@+id/textLocalizacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Localização"
         android:textColor="@color/black"
@@ -110,7 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cardDescricao"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,4 +164,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
