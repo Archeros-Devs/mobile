@@ -7,7 +7,6 @@ import br.com.arquerosdev.retrofit.RetrofitInitializer
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.activity_pasta_estudo.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -190,7 +189,7 @@ class APIsWebClient {
                     try{
 
                         val pasta = ModelEstudo(
-                            response.body()?.get("id_origem").toString().toDouble().roundToInt(),
+                            response.body()?.get("id_origem").toString().toDouble().toLong(),
                             response.body()?.get("id_mensagem").toString().toDouble().roundToInt(),
                             response.body()?.get("id_usuario").toString().toDouble().roundToInt(),
                             response.body()?.get("id_pasta").toString().toDouble().roundToInt(),

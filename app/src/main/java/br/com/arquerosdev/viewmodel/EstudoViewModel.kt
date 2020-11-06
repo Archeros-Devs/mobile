@@ -31,8 +31,8 @@ class EstudoViewModel (application: Application) : AndroidViewModel(application)
         repository.insertMsg(modelEstudo)
     }
 
-    fun insert(modelEstudo: List<ModelEstudo>) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(modelEstudo)
+    fun insertList(modelEstudo: List<ModelEstudo>) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertList(modelEstudo)
     }
 
     fun update(modelEstudo: ModelEstudo) = viewModelScope.launch(Dispatchers.IO){

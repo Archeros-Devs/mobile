@@ -14,16 +14,16 @@ class EstudoRepository (private val estudoDao: EstudoDao) {
         return estudoDao.pegarEstudo(id_pasta)
     }
 
-    suspend fun insert(modelEstudo: List<ModelEstudo>) {
-        estudoDao.insert(modelEstudo)
+    suspend fun insertList(modelEstudo: List<ModelEstudo>) {
+        estudoDao.insertList(modelEstudo)
     }
 
     suspend fun insertMsg(modelEstudo: ModelEstudo) {
         estudoDao.insertMsg(modelEstudo)
     }
 
-    suspend fun update(modelEstudo: ModelEstudo) {
-        estudoDao.update(modelEstudo.id_origem, modelEstudo.id_mensagem, modelEstudo.criado_em)
+    fun update(modelEstudo: ModelEstudo) {
+        estudoDao.update(modelEstudo.id_origem, modelEstudo.id_mensagem, modelEstudo.criado_em, modelEstudo.deletado_em)
     }
 
     fun getUltimoMSG(idUsuario: Int, idPasta: Int, msg: String): ModelEstudo{

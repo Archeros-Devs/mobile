@@ -1,24 +1,23 @@
 package br.com.arquerosdev
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.arquerosdev.adapter.EstudoAdapter
-import br.com.arquerosdev.adapter.PastaAdapter
 import br.com.arquerosdev.model.ModelEstudo
 import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.EstudoViewModel
-import br.com.arquerosdev.viewmodel.PastaViewModel
 import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_pasta_estudo.*
-import kotlinx.android.synthetic.main.activity_pasta_lista.*
-import kotlinx.android.synthetic.main.activity_pasta_perfil.*
+import java.util.*
 
 class PastaEstudoActivity : AppCompatActivity() {
 
@@ -30,7 +29,9 @@ class PastaEstudoActivity : AppCompatActivity() {
         val estudoViewModel: EstudoViewModel = ViewModelProvider(this)
             .get(EstudoViewModel::class.java)
 
-        recycleEstudo?.layoutManager = LinearLayoutManager(this)
+        val ll = LinearLayoutManager(this)
+        ll.stackFromEnd = true
+        recycleEstudo?.layoutManager = ll
         recycleEstudo?.itemAnimator = DefaultItemAnimator()
         recycleEstudo?.setHasFixedSize(true)
 
@@ -40,37 +41,74 @@ class PastaEstudoActivity : AppCompatActivity() {
 
         bt_send.setOnClickListener { view ->
             val msg = ModelEstudo(
-                0,
+                System.currentTimeMillis(),
                 0,
                 Prefs.getInt("id_usuario"),
                 pasta.id_pasta,
-                0,
+                1,
                 et_msg.text.toString(),
                 "",
                 ""
             )
             estudoViewModel.insertMsg(msg)
             Thread {
-                val msgNova = estudoViewModel.getUltimoMSG(Prefs.getInt("id_usuario"),pasta.id_pasta,et_msg.text.toString())
+                val msgNova = estudoViewModel.getUltimoMSG(
+                    Prefs.getInt("id_usuario"),
+                    pasta.id_pasta,
+                    et_msg.text.toString()
+                )
                 runOnUiThread {
                     val gsonEstudo = Gson()
                     val strMSG: String = gsonEstudo.toJson(msgNova)
 
-                    APIsWebClient().criarEstudo(strMSG, pasta.id_pasta, object : CallbackResponse<ModelEstudo> {
-                        override fun sucess(response: ModelEstudo) {
-                            ViewModelProvider(this@PastaEstudoActivity)
-                                .get(estudoViewModel::class.java).update(response)
-                        }
+                    APIsWebClient().criarEstudo(
+                        strMSG,
+                        pasta.id_pasta,
+                        object : CallbackResponse<ModelEstudo> {
+                            override fun sucess(response: ModelEstudo) {
+                                ViewModelProvider(this@PastaEstudoActivity)
+                                    .get(estudoViewModel::class.java).update(response)
+                            }
 
-                        override fun error(response: String) {
-                            Toast.makeText(this@PastaEstudoActivity,response, Toast.LENGTH_LONG).show()
-                        }
-                    })
-
+                            override fun error(response: String) {
+                                Toast.makeText(
+                                    this@PastaEstudoActivity,
+                                    response,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        })
                     et_msg.setText("")
                     et_msg.clearFocus()
                 }
             }.start()
         }
+
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                APIsWebClient().listEstudo(
+                    pasta.id_pasta.toString(),
+                    object : CallbackResponse<JsonObject> {
+                        override fun sucess(response: JsonObject) {
+                            val listaEstudo = response.getAsJsonArray("estudos")
+                            val gson = Gson()
+                            val typeResponse = object : TypeToken<List<ModelEstudo>>() {}.type
+                            val listModelEstudo: List<ModelEstudo> = gson.fromJson(
+                                listaEstudo,
+                                typeResponse
+                            )
+                            //estudoViewModel.insertList(listModelEstudo)
+                        }
+
+                        override fun error(response: String) {
+                            Toast.makeText(
+                                this@PastaEstudoActivity,
+                                "Falha ao baixar as mensagens!",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    })
+            }
+        }, 0, 10000)
     }
 }
