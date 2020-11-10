@@ -15,7 +15,6 @@ import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.EstudoViewModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_pasta_estudo.*
 import java.util.*
 
@@ -48,7 +47,8 @@ class PastaEstudoActivity : AppCompatActivity() {
                 1,
                 et_msg.text.toString(),
                 "",
-                ""
+                "",
+                Prefs.getString("nome_usuario")
             )
             estudoViewModel.insertMsg(msg)
             Thread {
@@ -90,14 +90,28 @@ class PastaEstudoActivity : AppCompatActivity() {
                     pasta.id_pasta.toString(),
                     object : CallbackResponse<JsonObject> {
                         override fun sucess(response: JsonObject) {
-                            val listaEstudo = response.getAsJsonArray("estudos")
-                            val gson = Gson()
-                            val typeResponse = object : TypeToken<List<ModelEstudo>>() {}.type
-                            val listModelEstudo: List<ModelEstudo> = gson.fromJson(
-                                listaEstudo,
-                                typeResponse
-                            )
-                            //estudoViewModel.insertList(listModelEstudo)
+                            val listaEstudoResp = response.getAsJsonArray("estudos")
+
+                            var listEstudos = ArrayList<ModelEstudo>()
+
+                            listaEstudoResp.forEach{
+                                val row = it.asJsonObject
+
+                                val estudo = ModelEstudo(
+                                    row.get("id_origem").asLong,
+                                    row.get("id_mensagem").asInt,
+                                    row.get("id_usuario").asInt,
+                                    row.get("id_pasta").asInt,
+                                    row.get("tipo").asInt,
+                                    row.get("mensagem").asString,
+                                    row.get("criado_em").asString,
+                                    if (row.get("deletado_em").isJsonNull) "" else row.get("deletado_em").asString,
+                                    row.get("usuario").asJsonObject.get("nome").asString
+                                )
+
+                                listEstudos.add(estudo)
+                            }
+                            estudoViewModel.insertList(listEstudos)
                         }
 
                         override fun error(response: String) {

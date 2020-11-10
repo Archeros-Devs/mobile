@@ -16,13 +16,13 @@ data class ModelEstudo(
     val id_mensagem: Int,
 
     @ColumnInfo(name = "id_usuario")
-    val id_usuario: Int,
+    val id_usuario: Int?,
 
     @ColumnInfo(name = "id_pasta")
-    val id_pasta: Int,
+    val id_pasta: Int?,
 
     @ColumnInfo(name = "tipo")
-    val tipo: Int,
+    val tipo: Int?,
 
     @ColumnInfo(name = "mensagem")
     val mensagem: String,
@@ -33,5 +33,9 @@ data class ModelEstudo(
 
     @Nullable
     @ColumnInfo(name = "deletado_em", defaultValue = "NULL")
-    val deletado_em: String?
+    val deletado_em: String?,
+
+    @Nullable
+    @ColumnInfo(name = "usuario", defaultValue = "NULL")
+    val usuario: String?
 ): Parcelable

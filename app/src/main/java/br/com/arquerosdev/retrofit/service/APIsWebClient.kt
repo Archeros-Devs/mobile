@@ -196,7 +196,8 @@ class APIsWebClient {
                             response.body()?.get("tipo").toString().toDouble().roundToInt(),
                             response.body()?.get("mensagem").toString(),
                             response.body()?.get("criado_em").toString(),
-                            ""
+                            if (response.body()?.get("deletado_em")!!.isJsonNull) "" else response.body()?.get("deletado_em").toString(),
+                            response.body()?.get("usuario")!!.asJsonObject.get("nome").asString
                         )
 
                         callbackResponse.sucess(pasta)

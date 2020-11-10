@@ -76,6 +76,7 @@ class FragmentsLogin : Fragment() {
 
                         Prefs.setString("token", response["token"].toString())
                         Prefs.setInt("id_usuario", response["id_usuario"].toString().toDouble().roundToInt())
+                        Prefs.setString("nome_usuario", response["nome"].toString())
 
                         val ativo = response["deletado_em"] == null
 
