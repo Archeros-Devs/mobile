@@ -123,6 +123,6 @@ class PastaEstudoActivity : AppCompatActivity() {
                         }
                     })
             }
-        }, 0, 10000)
+        }, 0, 5000)
     }
 }
