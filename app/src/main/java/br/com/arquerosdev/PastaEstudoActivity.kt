@@ -35,7 +35,7 @@ class PastaEstudoActivity : AppCompatActivity() {
         recycleEstudo?.setHasFixedSize(true)
 
         estudoViewModel.getEstudoChat(pasta!!.id_pasta).observe(this, Observer { listaEstudo ->
-            recycleEstudo?.adapter = EstudoAdapter(listaEstudo) {}
+            recycleEstudo?.adapter = EstudoAdapter(Prefs.getInt("id_usuario"),listaEstudo) {}
         })
 
         bt_send.setOnClickListener { view ->
@@ -117,7 +117,7 @@ class PastaEstudoActivity : AppCompatActivity() {
                         override fun error(response: String) {
                             Toast.makeText(
                                 this@PastaEstudoActivity,
-                                "Falha ao baixar as mensagens!",
+                                "Sem conexão com a Internet!",
                                 Toast.LENGTH_LONG
                             ).show()
                         }
