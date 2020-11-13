@@ -20,7 +20,6 @@ class CriarPastaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_nova_pasta)
 
         etSalvar.setOnClickListener { salvarNovaPasta() }
-        etCancelar.setOnClickListener { finish() }
 
     }
 
