@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/pg_explorar"
         android:enabled="true"
@@ -8,6 +9,7 @@
     <item
         android:id="@+id/pg_criar"
         android:enabled="true"
+        app:labelVisibilityMode="labeled"
         android:icon="@android:drawable/ic_menu_add"
         android:title="Nova Pasta" />
     <item

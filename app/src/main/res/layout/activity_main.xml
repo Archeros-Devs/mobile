@@ -9,178 +9,37 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/googlesans_bold"
-            android:text="Menu principal"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <GridLayout
-            android:layout_width="380dp"
-            android:layout_height="379dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:alignmentMode="alignMargins"
-            android:columnCount="2"
-            android:columnOrderPreserved="false"
-            android:rowCount="4">
+        <ImageButton
+            android:id="@+id/etCancelar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_white"
+            android:src="@drawable/ic_menu"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </ImageButton>
 
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="15dp"
-                android:id="@+id/btListarPastas"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="@drawable/round_border_pastas"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="18dp"
-                        android:src="@drawable/idea" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:text="Pastas"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="15dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:id="@+id/btCriarPasta"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="@drawable/round_border_pastas"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="18dp"
-                        android:src="@drawable/suggestion" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:text="Criar Pasta"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="@drawable/round_border_pastas"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="18dp"
-                        android:src="@drawable/career" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:text="Voluntário"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="@drawable/round_border_pastas"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="18dp"
-                        android:src="@drawable/ic_settings" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:text="Configurações"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </GridLayout>
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
