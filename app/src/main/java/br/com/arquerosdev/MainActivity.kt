@@ -8,6 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import br.com.arquerosdev.adapter.PastaAdapter
+import br.com.arquerosdev.viewmodel.PastaViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,6 +23,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_pasta_lista.*
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var map: GoogleMap
@@ -35,6 +40,15 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //btListarPastas.setOnClickListener { view ->
         //    startActivity(Intent(this,PastaListaActivity::class.java))
         //}
+
+        val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
+        pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
+            /*listaPasta.forEach {
+                run {
+                    placeMarkerOnMap(LatLng(1.1, 1.1))
+                }
+            }*/
+        })
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
