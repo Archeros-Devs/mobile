@@ -1,95 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="40dp">
+    android:background="#FAF8ED">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@color/colorLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_wave_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+    <TextView
+        android:id="@+id/etpasta"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="44dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:text="@string/nova_pasta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/etpasta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="@string/nova_pasta" />
+    <EditText
+        android:id="@+id/etNome_pasta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="@string/nome_pasta"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
 
-        <EditText
-            android:id="@+id/etNome_pasta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:ems="10"
-            android:hint="@string/nome_pasta"
-            android:text="Nome da pasta Teste"
-            android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/etDiscusao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:ems="10"
-            android:hint="@string/discusao"
-            android:text="Discusao da pasta Teste"
-            android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/etDiscusao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="@string/discusao"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNome_pasta"/>
 
-        <Spinner
-            android:id="@+id/spCategorias"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:entries="@array/categorias_array"
-            android:spinnerMode="dropdown" />
+    <Spinner
+        android:id="@+id/spCategorias"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/round_border"
+        android:entries="@array/categorias_array"
+        android:padding="16dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDiscusao" />
 
-        <EditText
-            android:id="@+id/etDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:ems="10"
-            android:hint="@string/descricao"
-            android:text="Descricao da pasta Teste"
-            android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/etDescricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="@string/descricao"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spCategorias"/>
 
-        <EditText
-            android:id="@+id/etEndereco"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:ems="10"
-            android:inputType="textPostalAddress"
-            android:text="endereco da pasta Teste"
-            android:hint="@string/endereco" />
+    <EditText
+        android:id="@+id/etEndereco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="@string/endereco"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescricao"/>
 
-        <RadioGroup
-            android:id="@+id/etConclusao"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/etSalvar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_bt"
+        android:text="@string/salvar"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEndereco" />
 
-            <Button
-                android:id="@+id/etSalvar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:hint="Salvar" />
+    <Button
+        android:id="@+id/etCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/round_bt"
+        android:text="cancelar"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEndereco" />
 
-            <Button
-                android:id="@+id/etCancelar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:hint="Cancelar" />
-
-        </RadioGroup>
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

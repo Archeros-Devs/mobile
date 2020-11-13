@@ -39,8 +39,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/gray"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="15dp"
                 android:id="@+id/btListarPastas"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
@@ -49,8 +48,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray"
                     android:gravity="center"
+                    android:background="@drawable/round_border_pastas"
                     android:orientation="vertical">
 
                     <ImageView
@@ -77,8 +76,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/gray"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="15dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:id="@+id/btCriarPasta"
@@ -87,8 +85,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray"
                     android:gravity="center"
+                    android:background="@drawable/round_border_pastas"
                     android:orientation="vertical">
 
                     <ImageView
@@ -114,15 +112,14 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/gray"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="15dp"
                 app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray"
                     android:gravity="center"
+                    android:background="@drawable/round_border_pastas"
                     android:orientation="vertical">
 
                     <ImageView
@@ -148,22 +145,21 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/gray"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="15dp"
                 app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray"
                     android:gravity="center"
+                    android:background="@drawable/round_border_pastas"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="18dp"
-                        android:src="@drawable/settings" />
+                        android:src="@drawable/ic_settings" />
 
                     <TextView
                         android:layout_width="wrap_content"
