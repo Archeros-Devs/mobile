@@ -19,7 +19,8 @@
         <activity android:name=".PastaEstudoActivity"></activity>
         <activity android:name=".PastaPerfilActivity" />
         <activity android:name=".PastaListaActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SemActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,8 +30,10 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/SemActionBar" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".CriarPastaActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/SemActionBar" />
+        <activity android:name=".CriarPastaActivity"
+            android:theme="@style/SemActionBar" />
     </application>
 
 </manifest>

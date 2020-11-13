@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pg_explorar"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Explorar" />
+    <item
+        android:id="@+id/pg_criar"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Nova Pasta" />
+    <item
+        android:id="@+id/pg_seguindo"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Seguindo" />
+</menu>
