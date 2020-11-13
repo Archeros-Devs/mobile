@@ -3,15 +3,16 @@ package br.com.arquerosdev.views
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer.OnPreparedListener
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,20 +22,32 @@ import br.com.arquerosdev.R
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
-import br.com.arquerosdev.viewmodel.ProfisaoViewModel
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import com.google.gson.JsonObject
-import kotlinx.android.synthetic.main.frag_cad_usuario.view.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlin.math.roundToInt
 
 
 class FragmentsLogin : Fragment() {
-
     private var senhaTemp = ""
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater?.inflate(R.layout.fragment_login, container, false)
+
+        val mediaController = MediaController(view.context)
+        val uri: Uri = Uri.parse("android.resource://br.com.arquerosdev/" + R.raw.background_login)
+        mediaController.setAnchorView(view.video_view)
+
+        view.video_view.setVideoURI(uri)
+        view.video_view.requestFocus()
+        view.video_view.start()
+
+        view.video_view.setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
+
         view.bt_login.setOnClickListener { btview ->
             checarCredenciais(view)
         }
@@ -68,14 +81,17 @@ class FragmentsLogin : Fragment() {
 
                 senhaTemp = view.edSenha.text.toString()
 
-                login.addProperty("email",view.edEmail.text.toString())
-                login.addProperty("senha",senhaTemp)
+                login.addProperty("email", view.edEmail.text.toString())
+                login.addProperty("senha", senhaTemp)
 
                 APIsWebClient().loginUsuario(login, object : CallbackResponse<Map<String, Any>> {
                     override fun sucess(response: Map<String, Any>) {
 
                         Prefs.setString("token", response["token"].toString())
-                        Prefs.setInt("id_usuario", response["id_usuario"].toString().toDouble().roundToInt())
+                        Prefs.setInt(
+                            "id_usuario",
+                            response["id_usuario"].toString().toDouble().roundToInt()
+                        )
                         Prefs.setString("nome_usuario", response["nome"].toString())
 
                         val ativo = response["deletado_em"] == null
@@ -97,27 +113,34 @@ class FragmentsLogin : Fragment() {
                             true
                         )
                         ViewModelProvider(activity!!)
-                        .get(UsuarioViewModel::class.java).insert(usuario)
+                            .get(UsuarioViewModel::class.java).insert(usuario)
 
-                        Toast.makeText(activity!!,"Login sucesso!",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity!!, "Login sucesso!", Toast.LENGTH_LONG).show()
                         val it = Intent(activity!!, MainActivity::class.java)
                         startActivity(it)
                         activity!!.finish()
                     }
 
                     override fun error(response: String) {
-                        Toast.makeText(activity!!,response,Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity!!, response, Toast.LENGTH_LONG).show()
                     }
                 })
             }else{
-                    usuarioViewModel.getCheckCredenciais(view.edEmail.text.toString(),view.edSenha.text.toString())
-                    .observe(activity!!, Observer{ usuario ->
-                        if(usuario!=null && usuario.ativo!!){
+                    usuarioViewModel.getCheckCredenciais(
+                        view.edEmail.text.toString(),
+                        view.edSenha.text.toString()
+                    )
+                    .observe(activity!!, Observer { usuario ->
+                        if (usuario != null && usuario.ativo!!) {
                             val it = Intent(activity!!, MainActivity::class.java)
                             startActivity(it)
                             activity!!.finish()
-                        }else{
-                            Toast.makeText(context, getString(R.string.login_invalido), Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                getString(R.string.login_invalido),
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     })
             }
