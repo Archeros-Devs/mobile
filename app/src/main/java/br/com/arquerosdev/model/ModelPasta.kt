@@ -37,6 +37,12 @@ data class ModelPasta (
     @ColumnInfo(name = "localizacao")
     val localizacao: String?,
 
+    @ColumnInfo(name = "lat", defaultValue = "0.0")
+    val lat: Double,
+
+    @ColumnInfo(name = "long", defaultValue = "0.0")
+    val long: Double,
+
     @Nullable
     @ColumnInfo(name = "criado_em", defaultValue = "NULL")
     val criado_em: String?,

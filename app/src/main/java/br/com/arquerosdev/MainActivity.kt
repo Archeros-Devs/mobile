@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
-            /*listaPasta.forEach {
+            listaPasta.forEach {
                 run {
-                    placeMarkerOnMap(LatLng(1.1, 1.1))
+                    placeMarkerOnMap(LatLng(it.lat, it.long))
                 }
-            }*/
+            }
         })
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->

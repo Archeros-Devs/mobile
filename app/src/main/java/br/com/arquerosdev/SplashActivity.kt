@@ -7,6 +7,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.model.ModelEscolaridade
@@ -29,6 +30,10 @@ class SplashActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
         if(verifyAvailableNetwork(this)){
             callProfissoes()
