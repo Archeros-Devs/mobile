@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -28,15 +27,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_pasta_lista.*
-import kotlinx.android.synthetic.main.drawer_header.*
 
-class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MainActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
@@ -47,8 +42,6 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        btnDrawer.setOnClickListener { view -> drawer.openDrawer(GravityCompat.START) }
-        drawer_user_name?.text = Prefs.getString("nome_usuario")
 
         //btListarPastas.setOnClickListener { view ->
         //    startActivity(Intent(this,PastaListaActivity::class.java))
@@ -66,24 +59,6 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 }
             }
         })
-
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.pg_explorar -> {
-                    // Respond to navigation item 1 click
-                    true
-                }
-                R.id.pg_criar -> {
-                    startActivity(Intent(this, CriarPastaActivity::class.java))
-                    false
-                }
-                R.id.pg_seguindo -> {
-                    // Respond to navigation item 2 click
-                    true
-                }
-                else -> false
-            }
-        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -127,21 +102,13 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 .get(PastaViewModel::class.java)
             val pasta =  pastaViewModel.getPasta(p0.title.toString())
             runOnUiThread {
-                val it = Intent(this@MainActivity, PastaPerfilActivity::class.java)
+                val it = Intent(this, PastaPerfilActivity::class.java)
                 it.putExtra("pasta", pasta as Parcelable)
                 startActivity(it)
             }
         }.start()
 
         return false
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.nav_favoritos -> null
-        }
-        drawer.closeDrawer(GravityCompat.START)
-        return true
     }
 
     override fun onResume() {
