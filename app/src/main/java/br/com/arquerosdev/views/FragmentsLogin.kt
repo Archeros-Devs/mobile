@@ -49,7 +49,7 @@ class FragmentsLogin : Fragment() {
 
         view.video_view.setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
 
-        if(Prefs.getString("email").isNullOrBlank()){
+        if(!Prefs.getString("email").isNullOrBlank()){
             view.edEmail.setText(Prefs.getString("email"))
         }
 

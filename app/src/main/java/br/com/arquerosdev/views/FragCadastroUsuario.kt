@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import br.com.arquerosdev.Prefs
 import br.com.arquerosdev.R
 import br.com.arquerosdev.model.ModelEndereco
 import br.com.arquerosdev.model.ModelUsuario
@@ -20,6 +21,7 @@ import br.com.arquerosdev.viewmodel.ProfisaoViewModel
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import kotlinx.android.synthetic.main.frag_cad_usuario.*
 import kotlinx.android.synthetic.main.frag_cad_usuario.view.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class FragCadastroUsuario : Fragment() {
 
@@ -125,6 +127,7 @@ class FragCadastroUsuario : Fragment() {
         }
 
         val strEmail = view.etEmail.text.toString()
+        Prefs.setString("email",view.etEmail.text.toString())
         if(strEmail.isBlank() || strEmail.length < 8 || funcoes.emailNaoValido(strEmail)){
             view.etEmail.requestFocus()
             view.etEmail.error = getText(R.string.msg_error_email)
