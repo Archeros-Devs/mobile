@@ -32,4 +32,8 @@ class PastaViewModel (application: Application) : AndroidViewModel(application) 
     fun update(modelPasta: ModelPasta) = viewModelScope.launch(Dispatchers.IO) {
         repository.update(modelPasta)
     }
+
+    fun getPasta(titulo: String): ModelPasta {
+        return repository.getPasta(titulo)
+    }
 }

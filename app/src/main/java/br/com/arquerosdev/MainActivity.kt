@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
@@ -50,8 +51,6 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         //    startActivity(Intent(this,PastaListaActivity::class.java))
         //}
 
-        callPastas()
-
         val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
             listaPasta.forEach {
@@ -88,7 +87,7 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         map = googleMap
         map.getUiSettings().setZoomControlsEnabled(true)
         map.setOnMarkerClickListener(this)
-        setUpMap()
+        //setUpMap()
     }
 
     private fun setUpMap() {
@@ -117,7 +116,22 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         map.addMarker(markerOptions)
     }
 
-    override fun onMarkerClick(p0: Marker?) = false
+    override fun onMarkerClick(p0: Marker?): Boolean {
+        Log.e("teste", p0!!.title.toString())
+
+        Thread {
+            val pastaViewModel: PastaViewModel = ViewModelProvider(this)
+                .get(PastaViewModel::class.java)
+            val pasta =  pastaViewModel.getPasta(p0.title.toString())
+            runOnUiThread {
+                val it = Intent(this@MainActivity, PastaPerfilActivity::class.java)
+                it.putExtra("pasta", pasta as Parcelable)
+                startActivity(it)
+            }
+        }.start()
+
+        return false
+    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
@@ -125,6 +139,11 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        callPastas()
     }
 
     private fun callPastas(){

@@ -23,4 +23,7 @@ interface PastaDao {
     suspend fun update(
         idUsuario: Int, nome: String?, discussao: String?, descricao: String?, localizacao: String?,
         criadoEm: Long?, deletadoEm: Long?, homologadaem: Long?, idpasta: Int)
+
+    @Query("SELECT * FROM Pasta WHERE nome=:titulo limit 1")
+    fun getPasta(titulo: String): ModelPasta
 }
