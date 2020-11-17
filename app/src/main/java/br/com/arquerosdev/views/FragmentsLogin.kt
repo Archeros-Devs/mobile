@@ -66,7 +66,7 @@ class FragmentsLogin : Fragment() {
                     .replace(R.id.frag_main, frag, "cadastro")
                     .commit()
             }else{
-                Toast.makeText(context, "Necessita de Intenert para cadastro!", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Necessita de Internet para cadastro!", Toast.LENGTH_LONG).show()
             }
 
         }
