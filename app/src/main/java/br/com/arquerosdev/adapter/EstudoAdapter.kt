@@ -1,5 +1,6 @@
 package br.com.arquerosdev.adapter
 
+import android.graphics.Color
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,12 +19,14 @@ class EstudoAdapter(
     class EstudoViewHolder(view: View): RecyclerView.ViewHolder(view){
         val textDiscusao: TextView
         val textNomeUsuario: TextView
+        val fundo: LinearLayout
         val ll_pai: LinearLayout
 
         init {
             textDiscusao = view.findViewById(R.id.textDiscusao)
             textNomeUsuario = view.findViewById(R.id.textNomeUsuario)
             ll_pai = view.findViewById(R.id.ll_pai)
+            fundo = view.findViewById(R.id.fundo)
         }
     }
 
@@ -42,8 +45,8 @@ class EstudoAdapter(
             holder.ll_pai.gravity = Gravity.END
         }else{
             holder.ll_pai.gravity = Gravity.START
+            holder.fundo.setBackgroundColor(Color.WHITE)
         }
-
         holder.textNomeUsuario.text = estudoModel.usuario
         holder.textDiscusao.text = estudoModel.mensagem
 
