@@ -19,7 +19,7 @@
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:text="Nome do assunto da Discusão"
+            android:text="Nome do assunto da Discussão"
             />
 
     </FrameLayout>
