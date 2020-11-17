@@ -146,7 +146,7 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
     override fun onResume() {
         super.onResume()
-        callPastas()
+        //callPastas()
     }
 
     private fun callPastas(){
