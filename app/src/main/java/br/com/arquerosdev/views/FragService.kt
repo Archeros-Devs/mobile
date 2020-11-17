@@ -69,8 +69,6 @@ class FragService : Fragment() {
                     }
                 })
             })
-
-
     }
 
 }

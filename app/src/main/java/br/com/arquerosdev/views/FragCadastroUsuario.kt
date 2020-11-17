@@ -184,7 +184,7 @@ class FragCadastroUsuario : Fragment() {
             return false
         }
 
-        val strEtEndereco = view.etEndereco.text.toString()
+        /*val strEtEndereco = view.etEndereco.text.toString()
         if(strEtEndereco.isBlank() || strEtEndereco.length < 4){
             view.etEndereco.requestFocus()
             view.etEndereco.error = getText(R.string.msg_error_endereco)
@@ -218,7 +218,7 @@ class FragCadastroUsuario : Fragment() {
             view.etEstado.requestFocus()
             view.etEstado.error = getText(R.string.msg_error_endereco)
             return false
-        }
+        }*/
 
         return true
     }
@@ -250,7 +250,7 @@ class FragCadastroUsuario : Fragment() {
             .get(UsuarioViewModel::class.java)
         usuarioViewModel.insert(usuario)
 
-        val endereco = ModelEndereco(
+        /*val endereco = ModelEndereco(
             0,//TODO: Nico gerar automatico no SERVIDOR
             0,
             view.etCidade.text.toString(),
@@ -264,7 +264,7 @@ class FragCadastroUsuario : Fragment() {
         )
         val enderecoViewModel: EnderecoViewModel = ViewModelProvider(this)
             .get(EnderecoViewModel::class.java)
-        enderecoViewModel.insert(endereco)
+        enderecoViewModel.insert(endereco)*/
 
         val bundle = Bundle()
         bundle.putString("service","cadastro")
