@@ -8,11 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.adapter.PastaAdapter
+import br.com.arquerosdev.model.ModelPasta
+import br.com.arquerosdev.retrofit.service.APIsWebClient
+import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.PastaViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -24,6 +28,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_pasta_lista.*
 
@@ -42,6 +49,8 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         //btListarPastas.setOnClickListener { view ->
         //    startActivity(Intent(this,PastaListaActivity::class.java))
         //}
+
+        callPastas()
 
         val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
@@ -116,5 +125,27 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun callPastas(){
+        if(!Prefs.getString("token").isNullOrEmpty()){
+            val pastaViewModel: PastaViewModel = ViewModelProvider(this)
+                .get(PastaViewModel::class.java)
+            APIsWebClient().listPastas(object: CallbackResponse<JsonObject> {
+                override fun sucess(response: JsonObject) {
+
+                    val listaPasta = response.getAsJsonArray("pastas")
+
+                    val gson = Gson()
+                    val typeResponse = object : TypeToken<List<ModelPasta>>() {}.type
+                    val listModelPasta: List<ModelPasta> = gson.fromJson(listaPasta, typeResponse)
+                    pastaViewModel.inserList(listModelPasta)
+                }
+
+                override fun error(response: String) {
+                    Toast.makeText(this@MainActivity,"Falha ao baixar as pastas!", Toast.LENGTH_LONG).show()
+                }
+            })
+        }
     }
 }
