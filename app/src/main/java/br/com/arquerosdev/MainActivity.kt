@@ -34,6 +34,7 @@ import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_pasta_lista.*
+import kotlinx.android.synthetic.main.drawer_header.*
 
 class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var map: GoogleMap
@@ -46,6 +47,8 @@ class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerC
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        btnDrawer.setOnClickListener { view -> drawer.openDrawer(GravityCompat.START) }
+        drawer_user_name?.text = Prefs.getString("nome_usuario")
 
         //btListarPastas.setOnClickListener { view ->
         //    startActivity(Intent(this,PastaListaActivity::class.java))
