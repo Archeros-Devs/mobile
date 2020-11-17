@@ -19,8 +19,7 @@ class PastaRepository (private val pastaDao: PastaDao) {
     }
 
     suspend fun update(mpst: ModelPasta){
-        /*pastaDao.update(mpst.idUsuario, mpst.nome, mpst.discussao, mpst.descricao, mpst.localizacao,
-            mpst.criadoEm, mpst.deletadoEm, mpst.homologadaem, mpst.idpasta)*/
+        pastaDao.update(mpst.criado_em, mpst.deletado_em, mpst.homologada_em, mpst.id_pasta, mpst.id_origem)
     }
 
     fun getPasta(titulo: String): ModelPasta {

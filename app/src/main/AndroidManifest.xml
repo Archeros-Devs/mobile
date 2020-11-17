@@ -30,9 +30,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".PastaEstudoActivity" />
-        <activity android:name=".PastaPerfilActivity" />
-        <activity android:name=".PastaListaActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SemActionBar">
@@ -51,6 +48,10 @@
         <activity
             android:name=".CriarPastaActivity"
             android:theme="@style/SemActionBar" />
+        <activity android:name=".PastaEstudoActivity" />
+        <activity android:name=".PastaPerfilActivity"
+            android:theme="@style/SemActionBar"/>
+        <activity android:name=".PastaListaActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

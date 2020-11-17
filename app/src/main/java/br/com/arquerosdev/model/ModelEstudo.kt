@@ -7,7 +7,7 @@ import androidx.room.Entity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "Estudo",primaryKeys = arrayOf("id_origem", "id_mensagem"))
+@Entity(tableName = "Estudo",primaryKeys = ["id_origem", "id_mensagem"])
 data class ModelEstudo(
     @ColumnInfo(name = "id_origem")
     val id_origem: Long,

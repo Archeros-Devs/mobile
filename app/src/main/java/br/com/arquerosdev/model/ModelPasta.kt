@@ -10,11 +10,10 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
-@Entity(tableName = "Pasta")
+@Entity(tableName = "Pasta",primaryKeys = ["id_origem", "id_pasta"])
 data class ModelPasta (
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int,
+    @ColumnInfo(name = "id_origem")
+    val id_origem: Long,
 
     @ColumnInfo(name = "id_pasta")
     val id_pasta: Int,

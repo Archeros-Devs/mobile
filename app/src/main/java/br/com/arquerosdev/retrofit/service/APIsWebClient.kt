@@ -152,7 +152,7 @@ class APIsWebClient {
                     try{
                         
                         val pasta = ModelPasta(
-                            0,
+                            response.body()?.get("id_origem").toString().toLong(),
                             response.body()?.get("id_pasta").toString().toDouble().roundToInt(),
                             response.body()?.get("id_usuario").toString().toDouble().roundToInt(),
                             response.body()?.get("nome").toString(),

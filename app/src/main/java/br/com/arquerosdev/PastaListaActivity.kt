@@ -34,13 +34,16 @@ class PastaListaActivity : AppCompatActivity() {
             startActivity(Intent(this, CriarPastaActivity::class.java))
         }
 
-        callPastas()
-
         val pastaViewModel: PastaViewModel = ViewModelProvider(this)
             .get(PastaViewModel::class.java)
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
             recyclePastas?.adapter = PastaAdapter(listaPasta) {onClickPasta(it)}
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        callPastas()
     }
 
     private fun callPastas(){

@@ -32,7 +32,7 @@ class CriarPastaActivity : AppCompatActivity() {
             val endereco = etEndereco.text.toString()
 
             val pasta = ModelPasta(
-                0,
+                System.currentTimeMillis(),
                 0,
                 Prefs.getInt("id_usuario"),
                 nomePasta,
