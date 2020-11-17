@@ -24,6 +24,7 @@ import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlin.math.roundToInt
 
@@ -47,6 +48,10 @@ class FragmentsLogin : Fragment() {
         view.video_view.start()
 
         view.video_view.setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
+
+        if(Prefs.getString("email").isNullOrBlank()){
+            view.edEmail.setText(Prefs.getString("email"))
+        }
 
         view.bt_login.setOnClickListener { btview ->
             checarCredenciais(view)
@@ -80,6 +85,8 @@ class FragmentsLogin : Fragment() {
                 val login = JsonObject()
 
                 senhaTemp = view.edSenha.text.toString()
+
+                Prefs.setString("email",view.edEmail.text.toString())
 
                 login.addProperty("email", view.edEmail.text.toString())
                 login.addProperty("senha", senhaTemp)

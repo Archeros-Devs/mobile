@@ -162,7 +162,9 @@ class APIsWebClient {
                             response.body()?.get("localizacao").toString(),
                             response.body()?.get("criado_em").toString(),
                             response.body()?.get("homologada_em").toString(),
-                            response.body()?.get("deletado_em").toString()
+                            response.body()?.get("deletado_em").toString(),
+                            response.body()?.get("latitude").toString().toDouble(),
+                            response.body()?.get("longitude").toString().toDouble()
                         )
 
                         callbackResponse.sucess(pasta)

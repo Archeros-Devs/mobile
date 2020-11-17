@@ -40,11 +40,11 @@ class CriarPastaActivity : AppCompatActivity() {
                 "[$categorias]",
                 discusao,
                 endereco,
-                0.0,
-                0.0,
-                null,
-                null,
-                null
+                "",
+                "",
+                "",
+                -24.265370,
+                -46.919879
             )
 
             val pastaViewModel = ViewModelProvider(this)

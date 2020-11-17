@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
             listaPasta.forEach {
                 run {
-                    placeMarkerOnMap(LatLng(it.lat, it.long))
+                    placeMarkerOnMap(LatLng(it.latitude, it.longitude))
                 }
             }
         })

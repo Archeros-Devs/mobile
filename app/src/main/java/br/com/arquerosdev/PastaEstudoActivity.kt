@@ -39,7 +39,7 @@ class PastaEstudoActivity : AppCompatActivity() {
         })
 
         bt_send.setOnClickListener { view ->
-            val msg = ModelEstudo(
+           val msg = ModelEstudo(
                 System.currentTimeMillis(),
                 0,
                 Prefs.getInt("id_usuario"),

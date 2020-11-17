@@ -37,12 +37,6 @@ data class ModelPasta (
     @ColumnInfo(name = "localizacao")
     val localizacao: String?,
 
-    @ColumnInfo(name = "lat", defaultValue = "0.0")
-    val lat: Double,
-
-    @ColumnInfo(name = "long", defaultValue = "0.0")
-    val long: Double,
-
     @Nullable
     @ColumnInfo(name = "criado_em", defaultValue = "NULL")
     val criado_em: String?,
@@ -53,6 +47,12 @@ data class ModelPasta (
 
     @Nullable
     @ColumnInfo(name = "deletado_em", defaultValue = "NULL")
-    val deletado_em: String?
+    val deletado_em: String?,
+
+    @ColumnInfo(name = "latitude")
+    val latitude: Double,
+
+    @ColumnInfo(name = "longitude")
+    val longitude: Double
 
     ): Parcelable
