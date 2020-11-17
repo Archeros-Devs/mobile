@@ -7,7 +7,9 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.adapter.PastaAdapter
@@ -25,7 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_pasta_lista.*
 
-class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MainActivity : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
@@ -45,7 +47,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
             listaPasta.forEach {
                 run {
-                    placeMarkerOnMap(LatLng(it.latitude, it.longitude))
+                    placeMarkerOnMap(
+                        it.nome!!,
+                        it.descricao!!,
+                        LatLng(it.latitude, it.longitude)
+                    )
                 }
             }
         })
@@ -94,10 +100,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
-    private fun placeMarkerOnMap(location: LatLng) {
-        val markerOptions = MarkerOptions().position(location)
+    private fun placeMarkerOnMap(title: String = "", descricao: String = "", location: LatLng) {
+        val markerOptions = MarkerOptions()
+            .position(location)
+            .snippet(descricao)
+            .title(title)
         map.addMarker(markerOptions)
     }
 
     override fun onMarkerClick(p0: Marker?) = false
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.nav_favoritos -> null
+        }
+        drawer.closeDrawer(GravityCompat.START)
+        return true
+    }
 }

@@ -56,4 +56,6 @@
         <item>Infraestrutura</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="nav_abrir">Abrir menu</string>
+    <string name="nav_fechar">Fechar menu</string>
 </resources>
