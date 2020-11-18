@@ -7,7 +7,6 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,27 +28,25 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:text="Menu Principal"/>
-
         </FrameLayout>
 
         <View
             android:id="@+id/view4"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginBottom="50dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/ic_wave_2"
             />
 
         <GridLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:alignmentMode="alignMargins"
+            android:alignmentMode="alignBounds"
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:rowCount="4">
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btListarPastas"
@@ -86,7 +83,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btCriarPasta"
@@ -190,11 +186,8 @@
 
             </androidx.cardview.widget.CardView>
 
-
         </GridLayout>
 
-
     </LinearLayout>
-
 
 </ScrollView>
