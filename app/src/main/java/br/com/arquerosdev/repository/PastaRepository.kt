@@ -22,7 +22,7 @@ class PastaRepository (private val pastaDao: PastaDao) {
         pastaDao.update(mpst.criado_em, mpst.deletado_em, mpst.homologada_em, mpst.id_pasta, mpst.id_origem)
     }
 
-    fun getPasta(titulo: String): ModelPasta {
-        return pastaDao.getPasta(titulo)
+    fun getPasta(id_pasta: Int): ModelPasta {
+        return pastaDao.getPasta(id_pasta)
     }
 }

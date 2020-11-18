@@ -21,6 +21,6 @@ interface PastaDao {
     @Query("UPDATE Pasta SET criado_em =:criadoEm, deletado_em =:deletadoEm, homologada_em=:homologadaem, id_pasta=:idpasta WHERE id_origem =:id_origem")
     suspend fun update(criadoEm: String?, deletadoEm: String?, homologadaem: String?, idpasta: Int, id_origem: Long)
 
-    @Query("SELECT * FROM Pasta WHERE nome=:titulo limit 1")
-    fun getPasta(titulo: String): ModelPasta
+    @Query("SELECT * FROM Pasta WHERE id_pasta=:id_pasta LIMIT 1")
+    fun getPasta(id_pasta: Int): ModelPasta
 }

@@ -33,7 +33,7 @@ class PastaViewModel (application: Application) : AndroidViewModel(application) 
         repository.update(modelPasta)
     }
 
-    fun getPasta(titulo: String): ModelPasta {
-        return repository.getPasta(titulo)
+    fun getPasta(id_pasta: Int): ModelPasta {
+        return repository.getPasta(id_pasta)
     }
 }

@@ -46,6 +46,9 @@
             android:name=".MainActivity"
             android:theme="@style/SemActionBar" />
         <activity
+            android:name=".MainActivityCrash"
+            android:theme="@style/SemActionBar" />
+        <activity
             android:name=".CriarPastaActivity"
             android:theme="@style/SemActionBar" />
         <activity android:name=".PastaEstudoActivity" />

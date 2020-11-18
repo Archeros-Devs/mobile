@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -14,7 +13,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import br.com.arquerosdev.adapter.PastaAdapter
 import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
@@ -28,19 +26,19 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_crash.*
-import kotlinx.android.synthetic.main.activity_pasta_lista.*
 import kotlinx.android.synthetic.main.drawer_header.*
+import kotlin.concurrent.thread
 
-class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
+    GoogleMap.OnInfoWindowClickListener {
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
+    private var markerMap: HashMap<String, Int> = HashMap();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,19 +52,6 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMa
         //btListarPastas.setOnClickListener { view ->
         //    startActivity(Intent(this,PastaListaActivity::class.java))
         //}
-
-        val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
-        pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
-            listaPasta.forEach {
-                run {
-                    placeMarkerOnMap(
-                        it.nome!!,
-                        it.descricao!!,
-                        LatLng(it.latitude, it.longitude)
-                    )
-                }
-            }
-        })
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
@@ -90,8 +75,27 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMa
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         map.getUiSettings().setZoomControlsEnabled(true)
-        map.setOnMarkerClickListener(this)
-        //setUpMap()
+        map.setOnInfoWindowClickListener(this)
+        val currentLatLng = LatLng(-24.3173, -46.9956)
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
+        setMapMarkers()
+        setUpMap()
+    }
+
+    private fun setMapMarkers() {
+        val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
+        pastaViewModel.modelPasta.observe(this, Observer { listaPasta ->
+            listaPasta.forEach {
+                run {
+                    placeMarkerOnMap(
+                        it.id_pasta,
+                        it.nome!!,
+                        it.descricao!!,
+                        LatLng(it.latitude, it.longitude)
+                    )
+                }
+            }
+        })
     }
 
     private fun setUpMap() {
@@ -112,29 +116,18 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMa
         }
     }
 
-    private fun placeMarkerOnMap(title: String = "", descricao: String = "", location: LatLng) {
+    private fun placeMarkerOnMap(
+        id_pasta: Int,
+        title: String = "",
+        descricao: String = "",
+        location: LatLng
+    ) {
         val markerOptions = MarkerOptions()
             .position(location)
             .snippet(descricao)
             .title(title)
-        map.addMarker(markerOptions)
-    }
-
-    override fun onMarkerClick(p0: Marker?): Boolean {
-        Log.e("teste", p0!!.title.toString())
-
-        Thread {
-            val pastaViewModel: PastaViewModel = ViewModelProvider(this)
-                .get(PastaViewModel::class.java)
-            val pasta =  pastaViewModel.getPasta(p0.title.toString())
-            runOnUiThread {
-                val it = Intent(this@MainActivityCrash, PastaPerfilActivity::class.java)
-                it.putExtra("pasta", pasta as Parcelable)
-                startActivity(it)
-            }
-        }.start()
-
-        return false
+        val marker = map.addMarker(markerOptions)
+        markerMap.put(marker.id, id_pasta)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -154,7 +147,7 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMa
         if(!Prefs.getString("token").isNullOrEmpty()){
             val pastaViewModel: PastaViewModel = ViewModelProvider(this)
                 .get(PastaViewModel::class.java)
-            APIsWebClient().listPastas(object: CallbackResponse<JsonObject> {
+            APIsWebClient().listPastas(object : CallbackResponse<JsonObject> {
                 override fun sucess(response: JsonObject) {
 
                     val listaPasta = response.getAsJsonArray("pastas")
@@ -166,9 +159,30 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback, GoogleMap.OnMa
                 }
 
                 override fun error(response: String) {
-                    Toast.makeText(this@MainActivityCrash,"Falha ao baixar as pastas!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@MainActivityCrash,
+                        "Falha ao baixar as pastas!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             })
         }
+    }
+
+    override fun onInfoWindowClick(marker: Marker?) {
+        if (marker == null) return
+        Log.e("teste", marker.title.toString())
+
+        val id_pasta: Int = markerMap[marker.id] ?: return
+        val pastaViewModel: PastaViewModel = ViewModelProvider(this).get(PastaViewModel::class.java)
+        Thread {
+            val pasta = pastaViewModel.getPasta(id_pasta)
+            runOnUiThread {
+                val it = Intent(this@MainActivityCrash, PastaPerfilActivity::class.java)
+                it.putExtra("pasta", pasta as Parcelable)
+                startActivity(it)
+            }
+        }.start()
+
     }
 }

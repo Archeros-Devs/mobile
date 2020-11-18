@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.arquerosdev.MainActivity
+import br.com.arquerosdev.MainActivityCrash
 import br.com.arquerosdev.Prefs
 import br.com.arquerosdev.R
 import br.com.arquerosdev.model.ModelUsuario
@@ -123,7 +124,7 @@ class FragmentsLogin : Fragment() {
                             .get(UsuarioViewModel::class.java).insert(usuario)
 
                         Toast.makeText(activity!!, "Login com sucesso!", Toast.LENGTH_LONG).show()
-                        val it = Intent(activity!!, MainActivity::class.java)
+                        val it = Intent(activity!!, MainActivityCrash::class.java)
                         startActivity(it)
                         activity!!.finish()
                     }
