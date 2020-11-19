@@ -35,6 +35,7 @@ import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main_crash.*
 import kotlinx.android.synthetic.main.drawer_header.*
+import java.io.IOException
 
 class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
     GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraIdleListener, OnCameraMoveListener {
@@ -233,10 +234,15 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
     }
 
     private fun getAddress(latLng: LatLng): String {
-        val geocoder = Geocoder(this)
-        val list = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-        val addressText = list[0].getAddressLine(0)
-        return addressText
+        try {
+            val geocoder = Geocoder(this)
+            val list = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+            val addressText = list[0].getAddressLine(0)
+            return addressText
+        } catch (e: IOException) {
+            Log.e("MapsActivity", e.localizedMessage)
+        }
+        return ""
     }
 
     override fun onCameraMove() {

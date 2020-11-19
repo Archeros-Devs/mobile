@@ -40,7 +40,7 @@
                 android:src="@drawable/ic_menu"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
