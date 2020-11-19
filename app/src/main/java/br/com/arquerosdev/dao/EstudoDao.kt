@@ -9,7 +9,7 @@ import br.com.arquerosdev.model.*
 
 @Dao
 interface EstudoDao {
-    @Query("SELECT * FROM Estudo WHERE id_pasta=:id")
+    @Query("SELECT * FROM Estudo WHERE id_pasta=:id ORDER BY id_origem, id_pasta")
     fun pegarEstudo(id: Int): LiveData<List<ModelEstudo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
