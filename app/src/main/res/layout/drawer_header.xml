@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/drawer_background"
     android:layout_gravity="bottom"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:padding="16dp"
@@ -12,10 +12,10 @@
 
     <ImageView
         android:id="@+id/drawer_image"
-        android:layout_width="61dp"
+        android:layout_width="190dp"
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/logo_icon" />
+        app:srcCompat="@drawable/peruibe_logo" />
 
     <TextView
         android:id="@+id/drawer_user_name"
