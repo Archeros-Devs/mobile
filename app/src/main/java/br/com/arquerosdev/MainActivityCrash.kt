@@ -54,6 +54,7 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         btnDrawer.setOnClickListener { view -> drawer.openDrawer(GravityCompat.START) }
+        footer_item_1.setOnClickListener { v -> finish()}
         drawer_user_name?.text = Prefs.getString("nome_usuario")
 
         btnCloseModal.setOnClickListener { v -> onCloseModal()}
