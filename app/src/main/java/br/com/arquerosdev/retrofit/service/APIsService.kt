@@ -29,7 +29,7 @@ interface APIsService {
     @POST("enderecos")
     fun insertEndereco(@Body enderecos: String): Call<String>
 
-    @GET("pastas")
+    @GET("pastas")///pastas?homologada=1
     fun listPastas(@Header("Authorization") token: String?): Call<JsonObject>
 
     @Headers("Content-Type: application/json")

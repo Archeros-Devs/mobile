@@ -247,7 +247,8 @@ class FragCadastroUsuario : Fragment() {
             true,//TODO: Nico VALIDAR DEPOIS -> ATIVAR DEPOIS NO LADO DO SERVIDOR
             0,
             view.etTelefone.text.toString(),
-            true
+            true,
+            null
         )
         val usuarioViewModel = ViewModelProvider(this)
             .get(UsuarioViewModel::class.java)

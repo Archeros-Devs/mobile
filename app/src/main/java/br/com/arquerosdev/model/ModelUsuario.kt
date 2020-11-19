@@ -53,5 +53,8 @@ data class ModelUsuario (
 
     @Expose
     @ColumnInfo(name = "sync")
-    val sync: Boolean?
+    val sync: Boolean?,
+
+    @ColumnInfo(name = "banido_ate")
+    val banido_ate: String?
 )

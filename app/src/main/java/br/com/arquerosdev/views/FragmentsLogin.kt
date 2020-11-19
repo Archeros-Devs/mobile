@@ -118,7 +118,8 @@ class FragmentsLogin : Fragment() {
                             ativo,
                             response["tipo_usuario"].toString().toDouble().roundToInt(),
                             response["telefone"].toString(),
-                            true
+                            true,
+                            response["banido_ate"].toString()
                         )
                         ViewModelProvider(activity!!)
                             .get(UsuarioViewModel::class.java).insert(usuario)
