@@ -18,8 +18,8 @@ interface EstudoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMsg(estudo: ModelEstudo)
 
-    @Query("UPDATE Estudo SET id_mensagem=:id_mensagem, criado_em=:criadoEm, deletado_em=:deletado_em WHERE id_origem=:id_origem")
-    fun update(id_origem: Long, id_mensagem: Int, criadoEm: String?, deletado_em: String?)
+    @Query("UPDATE Estudo SET mensagem=:mensagem, id_mensagem=:id_mensagem, criado_em=:criadoEm, deletado_em=:deletado_em WHERE id_origem=:id_origem")
+    fun update(mensagem:String,id_origem: Long, id_mensagem: Int, criadoEm: String?, deletado_em: String?)
 
     @Query("SELECT * FROM Estudo WHERE id_usuario=:id_usuario and id_pasta=:id_pasta and mensagem=:mensagem ORDER BY id_origem DESC LIMIT 1")
     fun getUltimoMSG(id_usuario: Int, id_pasta: Int, mensagem: String): ModelEstudo

@@ -23,7 +23,7 @@ class EstudoRepository (private val estudoDao: EstudoDao) {
     }
 
     fun update(modelEstudo: ModelEstudo) {
-        estudoDao.update(modelEstudo.id_origem, modelEstudo.id_mensagem, modelEstudo.criado_em, modelEstudo.deletado_em)
+        estudoDao.update(modelEstudo.mensagem,modelEstudo.id_origem, modelEstudo.id_mensagem, modelEstudo.criado_em, modelEstudo.deletado_em)
     }
 
     fun getUltimoMSG(idUsuario: Int, idPasta: Int, msg: String): ModelEstudo{
