@@ -8,6 +8,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,10 +21,12 @@ import br.com.arquerosdev.MainActivity
 import br.com.arquerosdev.MainActivityCrash
 import br.com.arquerosdev.Prefs
 import br.com.arquerosdev.R
+import br.com.arquerosdev.model.ModelData
 import br.com.arquerosdev.model.ModelUsuario
 import br.com.arquerosdev.retrofit.service.APIsWebClient
 import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
+import com.google.android.gms.common.util.Strings
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
@@ -38,7 +41,7 @@ class FragmentsLogin : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater?.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.fragment_login, container, false)
 
         val mediaController = MediaController(view.context)
         val uri: Uri = Uri.parse("android.resource://br.com.arquerosdev/" + R.raw.background_login)
@@ -102,6 +105,7 @@ class FragmentsLogin : Fragment() {
                         )
                         Prefs.setString("nome_usuario", response["nome"].toString())
 
+                        // Check para validar se o usuario esta banido
                         val ativo = response["deletado_em"] == null
 
                         val usuario = ModelUsuario(
@@ -124,10 +128,21 @@ class FragmentsLogin : Fragment() {
                         ViewModelProvider(activity!!)
                             .get(UsuarioViewModel::class.java).insert(usuario)
 
-                        Toast.makeText(activity!!, "Login com sucesso!", Toast.LENGTH_LONG).show()
-                        val it = Intent(activity!!, MainActivityCrash::class.java)
-                        startActivity(it)
-                        activity!!.finish()
+                        if(ativo){
+                            Toast.makeText(activity!!, "Login com sucesso!", Toast.LENGTH_LONG).show()
+                            val it = Intent(activity!!, MainActivityCrash::class.java)
+                            startActivity(it)
+                            activity!!.finish()
+                        }else{
+                            val bundle = Bundle()
+                            bundle.putString("data",response["banido_ate"].toString())
+
+                            val frag = Fragbanimento()
+                            frag.arguments = bundle
+                            activity!!.supportFragmentManager.beginTransaction()
+                                .replace(R.id.frag_main, frag, "Fragbanimento")
+                                .commit()
+                        }
                     }
 
                     override fun error(response: String) {

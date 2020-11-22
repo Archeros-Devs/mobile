@@ -1,15 +1,7 @@
 package br.com.arquerosdev
-import android.net.Uri
-import android.net.Uri.parse
-import android.os.Build
+
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.WindowManager
-import android.widget.MediaController
-import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import br.com.arquerosdev.views.FragmentsLogin
-import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginActivity : BaseActivity() {
 

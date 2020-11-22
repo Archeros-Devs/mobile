@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnsplash1"
+        android:id="@+id/btnsplash"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"
@@ -74,7 +74,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/btnsplash1"
+        app:layout_constraintEnd_toStartOf="@+id/btnsplash"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

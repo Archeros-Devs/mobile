@@ -14,6 +14,13 @@
     </style>
 
     <style name="AppTheme.ToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="titleTextAppearance">@android:style/TextAppearance.Material.Widget.Toolbar.Title</item>
+        <item name="titleTextAppearance">
+            @android:style/TextAppearance.Material.Widget.Toolbar.Title
+        </item>
+    </style>
+
+    <style name="Widget.AppTheme.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 </resources>

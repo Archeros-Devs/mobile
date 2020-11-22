@@ -18,6 +18,8 @@ import br.com.arquerosdev.retrofit.service.CallbackResponse
 import br.com.arquerosdev.viewmodel.EscolaridadeViewModel
 import br.com.arquerosdev.viewmodel.PastaViewModel
 import br.com.arquerosdev.viewmodel.ProfisaoViewModel
+import br.com.arquerosdev.views.FragSplash_1
+import br.com.arquerosdev.views.FragmentsLogin
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
@@ -27,22 +29,35 @@ class SplashActivity : BaseActivity(){
 
     private var TAG:String = "SplashActivity"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(icicle: Bundle?) {
+        super.onCreate(icicle)
         setContentView(R.layout.activity_splash)
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
         if(verifyAvailableNetwork(this)){
             callProfissoes()
         }else{
-            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            //startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             Toast.makeText(this,"Sem conexão com a Internet!",Toast.LENGTH_LONG).show()
-            finish()
+            //finish()
         }
 
+        if(icicle == null){
+            val ft = supportFragmentManager.beginTransaction()
+            val flagSplash_1 = FragSplash_1()
+            ft.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            ft.replace(R.id.frag_main, flagSplash_1, "flagSplash_1")
+            ft.addToBackStack("flagSplash_1")
+            ft.commit()
+        }
     }
     private fun callProfissoes(){
         val profissaoViewModel: ProfisaoViewModel = ViewModelProvider(this)
@@ -66,16 +81,16 @@ class SplashActivity : BaseActivity(){
             .get(EscolaridadeViewModel::class.java)
         APIsWebClient().listEscolaridade(object: CallbackResponse<List<ModelEscolaridade>> {
             override fun sucess(response: List<ModelEscolaridade>) {
-                escolaridadeViewModel.insert(response)
+                /*escolaridadeViewModel.insert(response)
                 //TODO: Tornar funcoes repitidas em uma só
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                finish()
+                finish()*/
             }
 
             override fun error(response: String) {
-                Toast.makeText(this@SplashActivity,"Sem conexão com a Internet!",Toast.LENGTH_LONG).show()
+                /*Toast.makeText(this@SplashActivity,"Sem conexão com a Internet!",Toast.LENGTH_LONG).show()
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                finish()
+                finish()*/
             }
         })
     }
