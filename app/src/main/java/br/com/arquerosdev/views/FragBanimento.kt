@@ -18,11 +18,8 @@ class Fragbanimento : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_banimento, container, false)
-
         val data = ModelData(arguments!!.getString("data")!!)
-
         view.dataBanimento.text = "Banido Até: ${data.dia}/${data.mes}/${data.ano}"
-
         return view
     }
 

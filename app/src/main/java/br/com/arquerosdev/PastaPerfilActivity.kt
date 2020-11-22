@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import br.com.arquerosdev.model.ModelData
 import br.com.arquerosdev.model.ModelPasta
 import br.com.arquerosdev.viewmodel.UsuarioViewModel
 import kotlinx.android.synthetic.main.activity_pasta_perfil.*
@@ -26,7 +27,8 @@ class PastaPerfilActivity : AppCompatActivity() {
         })
 
         textNomePasta.text= pasta?.nome.toString()
-        textCriadoEm.text = pasta?.criado_em.toString()
+        val data = ModelData(pasta?.criado_em.toString())
+        textCriadoEm.text = "${data.dia}/${data.mes}/${data.ano} ${data.horas}:${data.minuto}"
         cardDiscusao.text = pasta?.discussao.toString()
         cardDescricao.text = pasta?.descricao.toString()
         cardlocalizacao.text = pasta?.localizacao.toString()
