@@ -19,6 +19,8 @@ class CriarPastaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nova_pasta)
 
+        etEndereco.setText(intent.getStringExtra("valEndereco"))
+
         etSalvar.setOnClickListener { salvarNovaPasta() }
 
     }
@@ -30,6 +32,7 @@ class CriarPastaActivity : AppCompatActivity() {
             val categorias = spCategorias.selectedItemPosition
             val descricao = etDescricao.text.toString()
             val endereco = etEndereco.text.toString()
+
 
             val pasta = ModelPasta(
                 System.currentTimeMillis(),
@@ -43,8 +46,8 @@ class CriarPastaActivity : AppCompatActivity() {
                 "",
                 "",
                 "",
-                -24.265370,
-                -46.919879,
+                intent.getDoubleExtra("valLatitude",-24.265370),
+                intent.getDoubleExtra("valLongetud",-46.919879),
                 Prefs.getString("nome_usuario")
             )
 

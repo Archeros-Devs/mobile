@@ -47,6 +47,10 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
     private val PeruibeLocation = LatLng(-24.3173, -46.9956)
     private var modal = false
 
+    private var valLatitude:Double = 0.0
+    private var valLongetud:Double = 0.0
+    private var valEndereco = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_crash)
@@ -59,8 +63,15 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
 
         btnCloseModal.setOnClickListener { v -> onCloseModal()}
         btnNovaPasta.setOnClickListener{ v ->
+            valEndereco
+            valLatitude
+            valLongetud
+
+
             val it = Intent(this, CriarPastaActivity::class.java)
-            it.putExtra("localizacao", map.cameraPosition.target)
+            it.putExtra("valLatitude",valLatitude)
+            it.putExtra("valLongetud",valLongetud)
+            it.putExtra("valEndereco",valEndereco)
             startActivity(it)
         }
 
@@ -254,6 +265,10 @@ class MainActivityCrash : NavigationDrawer(), OnMapReadyCallback,
         if (modal) {
             val address = getAddress(map.cameraPosition.target)
             text_endereco.text = address
+
+            valEndereco = address
+            valLatitude = map.cameraPosition.target.latitude
+            valLongetud = map.cameraPosition.target.longitude
         }
     }
 }

@@ -1,7 +1,5 @@
 package br.com.arquerosdev.model;
 
-import android.text.TextUtils.substring
-
 open class ModelData(private val strData: String){
 
     open val ano: String = strData.substring(0,4)
