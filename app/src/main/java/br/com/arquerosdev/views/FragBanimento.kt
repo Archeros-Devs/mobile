@@ -19,7 +19,7 @@ class Fragbanimento : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_banimento, container, false)
         val data = ModelData(arguments!!.getString("data")!!)
-        view.dataBanimento.text = "Banido Até: ${data.dia}/${data.mes}/${data.ano}"
+        view.dataBanimento.text = "Você foi broqueado na comunidade até: ${data.dia}/${data.mes}/${data.ano} qualquer dúvida entre em contato com um dos administradores.\n\nadmin@peruibemelhor.com.br"
         return view
     }
 

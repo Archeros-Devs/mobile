@@ -44,7 +44,8 @@ class CriarPastaActivity : AppCompatActivity() {
                 "",
                 "",
                 -24.265370,
-                -46.919879
+                -46.919879,
+                Prefs.getString("nome_usuario")
             )
 
             val pastaViewModel = ViewModelProvider(this)

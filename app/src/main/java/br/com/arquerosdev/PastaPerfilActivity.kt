@@ -20,11 +20,7 @@ class PastaPerfilActivity : AppCompatActivity() {
 
         val pasta = intent.getParcelableExtra<ModelPasta>("pasta")
 
-        val usuarioViewModel = ViewModelProvider(this)
-            .get(UsuarioViewModel::class.java).modelUsuarioLogado
-        usuarioViewModel.observe(this, Observer { usuario ->
-            this.textNomeUsuario.text = usuario.nome
-        })
+        this.textNomeUsuario.text = pasta?.criador.toString()
 
         textNomePasta.text= pasta?.nome.toString()
         val data = ModelData(pasta?.criado_em.toString())

@@ -52,6 +52,9 @@ data class ModelPasta (
     val latitude: Double,
 
     @ColumnInfo(name = "longitude")
-    val longitude: Double
+    val longitude: Double,
+
+    @ColumnInfo(name = "criador")
+    val criador: String?
 
     ): Parcelable
