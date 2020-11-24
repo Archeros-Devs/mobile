@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.arquerosdev.R
-import br.com.arquerosdev.model.ModelData
+import br.com.arquerosdev.model.ModelDataBanido
 import kotlinx.android.synthetic.main.fragment_banimento.view.*
 
 class Fragbanimento : Fragment() {
@@ -18,7 +18,7 @@ class Fragbanimento : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_banimento, container, false)
-        val data = ModelData(arguments!!.getString("data")!!)
+        val data = ModelDataBanido(arguments!!.getString("data")!!)
         view.dataBanimento.text = "Você foi broqueado na comunidade até: ${data.dia}/${data.mes}/${data.ano} qualquer dúvida entre em contato com um dos administradores.\n\nadmin@peruibemelhor.com.br"
         return view
     }

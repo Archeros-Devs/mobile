@@ -106,7 +106,7 @@ class FragmentsLogin : Fragment() {
                         Prefs.setString("nome_usuario", response["nome"].toString())
 
                         // Check para validar se o usuario esta banido
-                        val ativo = response["deletado_em"] == null
+                        val ativo = response["banido_ate"] == null
 
                         val usuario = ModelUsuario(
                             0,
